@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.alexwalker.betabs2.Main2Activity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Факультет"
+        android:ems="10"
+        android:layout_marginStart="68dp"
+        android:id="@+id/faculty"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Курс"
+        android:ems="10"
+        android:layout_below="@+id/faculty"
+        android:layout_alignStart="@+id/faculty"
+        android:id="@+id/year" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Группа"
+        android:ems="10"
+        android:layout_below="@+id/year"
+        android:layout_alignEnd="@+id/year"
+        android:id="@+id/group" />
+
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/year"
+        android:layout_toEndOf="@+id/year"
+        android:layout_marginStart="17dp"
+        android:id="@+id/button" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/group"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/textView" />
+</RelativeLayout>
