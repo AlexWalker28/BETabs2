@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String whereClause = "groupFaculty.faculty = '" + faculty.getText().toString() + "' AND groupYear.year = "
-                        + year.getText().toString() + " AND lessonNumber = " + group.getText().toString();
+                        + year.getText().toString() + " AND groupNumber = " + group.getText().toString();
                 BackendlessDataQuery dataQuery = new BackendlessDataQuery();
                 dataQuery.setWhereClause(whereClause);
 
@@ -71,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
                                 for (Lesson lesson : lessons) {
                                     textView.append("\n" + lesson.getLessonName().getFullName()
                                             + " " + lesson.getLessonNumber().getNumber());
-                                    listView.setAdapter(new LessonsListAdapter(MainActivity.this, lessons));
+
                                 }
+                                listView.setAdapter(new LessonsListAdapter(MainActivity.this, lessons));
 
                             }
 

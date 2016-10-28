@@ -52,7 +52,8 @@ public class LessonsListAdapter extends BaseAdapter {
         holder.lessonNumber.setText(lessonList.get(position).getLessonNumber().getNumber());
         holder.lessonName.setText(lessonList.get(position).getLessonName().getFullName());
         holder.lessonOrder.setText(lessonList.get(position).getLessonOrder());
-        holder.dayOfTheWeek.setText(lessonList.get(position).getWeek().getDayOfTheWeek());
+        if (position == 0 || lessonList.get(position).getWeek().getDayOfTheWeek() != lessonList.get(position - 1 ).getWeek().getDayOfTheWeek())
+            holder.dayOfTheWeek.setText(lessonList.get(position).getWeek().getDayOfTheWeek().toString());
         return convertView;
     }
 
