@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.backendless.Backendless;
@@ -13,6 +14,8 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView textView;
@@ -20,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
     EditText year;
     EditText group;
     Button button;
-
     String facultyText;
     String yearText;
     String groupText;
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         faculty = (EditText) findViewById(R.id.faculty);
         year = (EditText) findViewById(R.id.year);
         group = (EditText) findViewById(R.id.group);
+        listView = (ListView) findViewById(R.id.listViewMain);
 
         faculty.setText("Лечебное дело");
         year.setText("4");
@@ -42,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
         facultyText = faculty.getText().toString();
         yearText = year.getText().toString();
         groupText = group.getText().toString();
-
-
-
 
         textView = (TextView) findViewById(R.id.textView);
         button = (Button) findViewById(R.id.button);
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String whereClause = "groupFaculty.faculty = '" + faculty.getText().toString() + "' AND groupYear.year = "
-                        + year.getText().toString() + " AND groupNumber = " + group.getText().toString();
+                        + year.getText().toString() + " AND lessonNumber = " + group.getText().toString();
                 BackendlessDataQuery dataQuery = new BackendlessDataQuery();
                 dataQuery.setWhereClause(whereClause);
 
@@ -63,7 +65,15 @@ public class MainActivity extends AppCompatActivity {
                         new AsyncCallback<BackendlessCollection<Group>>() {
                             @Override
                             public void handleResponse(BackendlessCollection<Group> foundGroups) {
-                                textView.setText(foundGroups.getData().get(0).getObjectId().toString());
+                                Group foundGroup = foundGroups.getData().get(0);
+                                textView.setText(foundGroup.getGroupNumber().toString());
+                                List<Lesson> lessons = foundGroup.getGroupLesson();
+                                for (Lesson lesson : lessons) {
+                                    textView.append("\n" + lesson.getLessonName().getFullName()
+                                            + " " + lesson.getLessonNumber().getNumber());
+                                    listView.setAdapter(new LessonsListAdapter(MainActivity.this, lessons));
+                                }
+
                             }
 
                             @Override
@@ -71,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                                 textView.setText(fault.toString());
                             }
                         });
+
+
+
 
 
 
@@ -84,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                         int size = groupBackendlessCollection.getData().size();
                         for (int i = 0; i < size; i++) {
                             groupData = groupBackendlessCollection.getData().get(i);
-                            String groupNumber = groupData.getGroupNumber().toString();
-                            textView.append(groupNumber + "\n");
+                            String lessonNumber = groupData.getGroupNumber().toString();
+                            textView.append(lessonNumber + "\n");
 
                         }
 

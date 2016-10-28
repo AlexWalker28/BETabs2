@@ -44,11 +44,11 @@ public class Main2Activity extends AppCompatActivity {
                 String yearText = year.getText().toString();
                 String groupText = group.getText().toString();
 
-                Backendless.Persistence.of(Group.class).find(new AsyncCallback<BackendlessCollection<Group>>() {
+                /*Backendless.Persistence.of(Group.class).find(new AsyncCallback<BackendlessCollection<Group>>() {
                     @Override
                     public void handleResponse(BackendlessCollection<Group> groupBackendlessCollection) {
 
-                        listView.setAdapter(new BackendlessCollectionAdapter(Main2Activity.this, groupBackendlessCollection));
+                        listView.setAdapter(new LessonsListAdapter(Main2Activity.this, groupBackendlessCollection));
 
 
                     }
@@ -58,16 +58,16 @@ public class Main2Activity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Didn't work", Toast.LENGTH_SHORT).show();
                     }
                 });
+*/
 
-
-                /*String whereClause =  "groupNumber = 27"   ; //"groupFaculty LIKE '%" + facultyText + "%' AND groupYear LIKE '%" + yearText + "%' AND groupNumber LIKE '%" + groupText + "%'";
+                /*String whereClause =  "lessonNumber = 27"   ; //"groupFaculty LIKE '%" + facultyText + "%' AND groupYear LIKE '%" + yearText + "%' AND lessonNumber LIKE '%" + groupText + "%'";
                 BackendlessDataQuery dataQuery = new BackendlessDataQuery();
                 dataQuery.setWhereClause(whereClause);
 
                 Backendless.Persistence.of(Group.class).find(dataQuery, new AsyncCallback<BackendlessCollection<Group>>() {
                     @Override
                     public void handleResponse(BackendlessCollection<Group> groupBackendlessCollection) {
-                        listView.setAdapter(new BackendlessCollectionAdapter(Main2Activity.this, groupBackendlessCollection));
+                        listView.setAdapter(new LessonsListAdapter(Main2Activity.this, groupBackendlessCollection));
 
                     }
 

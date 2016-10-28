@@ -4,32 +4,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/dayTextView" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/lessonNumber" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
+        android:id="@+id/lessonName" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView5" />
+        android:id="@+id/lessonOrder" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6" />
 </LinearLayout>
