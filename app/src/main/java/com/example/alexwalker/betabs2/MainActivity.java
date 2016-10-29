@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void handleResponse(BackendlessCollection<Group> foundGroups) {
                                 Group foundGroup = foundGroups.getData().get(0);
-                                textView.setText(foundGroup.getGroupNumber().toString());
+                                /*textView.setText(foundGroup.getGroupNumber().toString());*/
                                 List<Lesson> lessons = foundGroup.getGroupLesson();
-                                for (Lesson lesson : lessons) {
+                                /*for (Lesson lesson : lessons) {
                                     textView.append("\n" + lesson.getLessonName().getFullName()
                                             + " " + lesson.getLessonNumber().getNumber());
 
-                                }
+                                }*/
                                 Collections.sort(lessons, new LessonComparator());
                                 listView.setAdapter(new LessonsListAdapter(MainActivity.this, lessons));
 

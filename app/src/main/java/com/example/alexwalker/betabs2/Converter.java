@@ -31,4 +31,34 @@ public class Converter {
         }
         return day;
     }
+
+    public static String convertLessonNumber(String numberToConvert){
+        String number = "";
+        switch (numberToConvert){
+            case "1":
+                number = "7:30 - 9:05";
+                break;
+            case "2":
+                number = "10:00 - 11:35";
+                break;
+            case "3":
+                number = "12:15 - 13:50";
+                break;
+            case "4":
+                number = "14:30 - 16:05";
+                break;
+            case "1+":
+                number = "7:00 - 9:15";
+                break;
+            case "2+":
+                number = "9:20 - 11:40";
+                break;
+            case "3+":
+                number = "12:15 - 14:35";
+                break;
+            case "4+":
+                number = "15:00 - 17:15";
+        }
+        return number;
+    }
 }
