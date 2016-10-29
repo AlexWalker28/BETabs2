@@ -14,6 +14,7 @@ import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.BackendlessDataQuery;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                                             + " " + lesson.getLessonNumber().getNumber());
 
                                 }
+                                Collections.sort(lessons, new LessonComparator());
                                 listView.setAdapter(new LessonsListAdapter(MainActivity.this, lessons));
 
                             }
