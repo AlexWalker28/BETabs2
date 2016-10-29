@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         yearText = year.getText().toString();
         groupText = group.getText().toString();
 
-        textView = (TextView) findViewById(R.id.textView);
+
         button = (Button) findViewById(R.id.button);
 
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void handleFault(BackendlessFault fault) {
-                                textView.setText(fault.toString());
+
                             }
                         });
 
