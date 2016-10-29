@@ -12,6 +12,7 @@ import java.util.List;
 public class LessonsListAdapter extends BaseAdapter {
     private List<Lesson> lessonList;
     private LayoutInflater layoutInflater;
+    Converter converter;
 
     public LessonsListAdapter(Context context, List<Lesson> lessonList) {
         this.lessonList = lessonList;
@@ -49,11 +50,14 @@ public class LessonsListAdapter extends BaseAdapter {
         }
 
 
+
+
+
         holder.lessonNumber.setText(lessonList.get(position).getLessonNumber().getNumber());
         holder.lessonName.setText(lessonList.get(position).getLessonName().getFullName());
         holder.lessonOrder.setText(lessonList.get(position).getLessonOrder());
-        if (position == 0 || lessonList.get(position).getWeek().getDayOfTheWeek() != lessonList.get(position - 1 ).getWeek().getDayOfTheWeek())
-            holder.dayOfTheWeek.setText(lessonList.get(position).getWeek().getDayOfTheWeek().toString());
+       if (position == 0 || lessonList.get(position).getWeek().getDayOfTheWeek() != lessonList.get(position - 1 ).getWeek().getDayOfTheWeek())
+            holder.dayOfTheWeek.setText(converter.convertDay(lessonList.get(position).getWeek().getDayOfTheWeek()));
         return convertView;
     }
 
