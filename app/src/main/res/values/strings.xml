@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BETabs2</string>
+    <string-array name="Faculty">
+        <item>Medicine</item>
+        <item>Pediatrics</item>
+        <item>Pharmacy</item>
+        <item>Stomatology</item>
+        <item>MTD</item>
+    </string-array>
 </resources>
