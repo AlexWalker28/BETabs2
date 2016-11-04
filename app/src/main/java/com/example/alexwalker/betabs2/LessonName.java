@@ -14,7 +14,7 @@ public class LessonName
   private java.util.Date created;
   private String objectId;
   private String ownerId;
-  private Integer codeName;
+  private String codeName;
   private Department lessonNameDepartment;
   public java.util.Date getUpdated()
   {
@@ -46,12 +46,12 @@ public class LessonName
     return ownerId;
   }
 
-  public Integer getCodeName()
+  public String getCodeName()
   {
     return codeName;
   }
 
-  public void setCodeName( Integer codeName )
+  public void setCodeName( String codeName )
   {
     this.codeName = codeName;
   }

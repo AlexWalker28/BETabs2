@@ -13,6 +13,7 @@ public class Lesson
   private String lessonOrder;
   private String ownerId;
   private Boolean isLecture;
+  private Boolean isOdd;
   private java.util.Date updated;
   private java.util.Date created;
   private LessonNumber lessonNumber;
@@ -46,6 +47,14 @@ public class Lesson
   public void setIsLecture( Boolean isLecture )
   {
     this.isLecture = isLecture;
+  }
+
+  public Boolean getIsOdd() {
+    return isOdd;
+  }
+
+  public void setIsOdd(Boolean odd) {
+    isOdd = odd;
   }
 
   public java.util.Date getUpdated()
