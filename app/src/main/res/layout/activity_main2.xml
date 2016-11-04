@@ -14,23 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Курс"
+        android:hint="@string/course"
         android:ems="10"
         android:background="@android:drawable/editbox_background_normal"
         android:layout_below="@+id/faculty2"
         android:layout_alignStart="@+id/faculty2"
         android:id="@+id/year2" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Группа"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:layout_below="@+id/year2"
-        android:layout_alignEnd="@+id/year2"
-        android:id="@+id/group2" />
 
     <ListView
         android:layout_width="match_parent"
@@ -50,10 +39,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Факультет"
+        android:hint="@string/faculty"
         android:ems="10"
         android:background="@android:drawable/editbox_background_normal"
         android:id="@+id/faculty2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/group"
+        android:background="@android:drawable/editbox_background_normal"
+        android:ems="10"
+        android:id="@+id/group2"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignStart="@+id/year2" />
 </RelativeLayout>
