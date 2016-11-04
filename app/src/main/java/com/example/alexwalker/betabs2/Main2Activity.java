@@ -36,13 +36,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                faculty.setText("Лечебное дело");
-                year.setText("1");
-                group.setText("27");
 
-                String facultyText = faculty.getText().toString();
-                String yearText = year.getText().toString();
-                String groupText = group.getText().toString();
 
                 /*Backendless.Persistence.of(Group.class).find(new AsyncCallback<BackendlessCollection<Group>>() {
                     @Override
