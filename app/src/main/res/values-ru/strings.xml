@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Расписание</string>
+    <string name="course">Курс</string>
+    <string name="faculty">Факультет</string>
+    <string name="group">Группа</string>
+</resources>
