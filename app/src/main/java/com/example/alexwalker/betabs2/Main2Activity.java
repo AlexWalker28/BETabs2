@@ -3,9 +3,11 @@ package com.example.alexwalker.betabs2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -16,9 +18,9 @@ import com.backendless.exceptions.BackendlessFault;
 public class Main2Activity extends AppCompatActivity {
 
     ListView listView;
-    EditText faculty;
-    EditText year;
-    EditText group;
+    Spinner faculty;
+    Spinner year;
+    Spinner group;
     Button button2;
 
     @Override
@@ -26,10 +28,13 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        faculty = (EditText) findViewById(R.id.faculty2);
-        year = (EditText) findViewById(R.id.year2);
-        group = (EditText) findViewById(R.id.group2);
+        faculty = (Spinner) findViewById(R.id.faculty2);
+        year = (Spinner) findViewById(R.id.year2);
+        group = (Spinner) findViewById(R.id.group2);
         button2 = (Button) findViewById(R.id.button2);
+
+        String[] data = {"Лечебное дело", "Педиатрия",  "Фармация", "Стоматология", "МПД"};
+
 
 
         button2.setOnClickListener(new View.OnClickListener() {
