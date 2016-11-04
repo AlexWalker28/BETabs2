@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         String appVersion = "v1";
         Backendless.initApp(this, "ECD9BE7E-78DD-4F01-FF4E-EE88E8026F00", "9B5BC839-0646-3D7B-FF78-5662E53A0200", appVersion);
 
-        faculty = (EditText) findViewById(R.id.faculty);
-        year = (EditText) findViewById(R.id.year);
-        group = (EditText) findViewById(R.id.group);
+        faculty = (EditText) findViewById(R.id.faculty2);
+        year = (EditText) findViewById(R.id.year2);
+        group = (EditText) findViewById(R.id.group2);
         listView = (ListView) findViewById(R.id.listViewMain);
 
         faculty.setText("Лечебное дело");
