@@ -20,20 +20,19 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/spinner3"
-            ba
+            android:id="@+id/facult2"
             android:layout_weight="1" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/spinner2"
+            android:id="@+id/year2"
             android:layout_weight="1" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/spinner"
+            android:id="@+id/group2"
             android:layout_weight="1" />
     </LinearLayout>
 
