@@ -42,7 +42,7 @@ public class LessonsListAdapter extends BaseAdapter {
             holder.lessonNumber = (TextView) convertView.findViewById(R.id.lessonNumber);
             holder.lessonName = (TextView) convertView.findViewById(R.id.lessonName);
             holder.lessonOrder = (TextView) convertView.findViewById(R.id.lessonOrder);
-            holder.dayOfTheWeek = (TextView) convertView.findViewById(R.id.dayTextView);
+
             convertView.setTag(holder);
 
         } else {
@@ -53,8 +53,8 @@ public class LessonsListAdapter extends BaseAdapter {
         holder.lessonNumber.setText(converter.convertLessonNumber(lessonList.get(position).getLessonNumber().getNumber()));
         holder.lessonName.setText(lessonList.get(position).getLessonName().getFullName());
         /*holder.lessonOrder.setText(lessonList.get(position).getLessonOrder());*/
-        if (position == 0 || lessonList.get(position).getWeek().getDayOfTheWeek() != lessonList.get(position - 1).getWeek().getDayOfTheWeek())
-            holder.dayOfTheWeek.setText(converter.convertDay(lessonList.get(position).getWeek().getDayOfTheWeek()));
+        //if (position == 0 || lessonList.get(position).getWeek().getDayOfTheWeek() != lessonList.get(position - 1).getWeek().getDayOfTheWeek())
+        //holder.dayOfTheWeek.setText(converter.convertDay(lessonList.get(position).getWeek().getDayOfTheWeek()));
         return convertView;
     }
 
@@ -62,7 +62,7 @@ public class LessonsListAdapter extends BaseAdapter {
         TextView lessonNumber;
         TextView lessonName;
         TextView lessonOrder;
-        TextView dayOfTheWeek;
+        //TextView dayOfTheWeek;
     }
 
 
