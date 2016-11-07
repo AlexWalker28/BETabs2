@@ -26,7 +26,7 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.31"
             android:id="@+id/year2" />
 
         <EditText
@@ -34,7 +34,8 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/group2" />
+            android:id="@+id/group2"
+            android:layout_weight="0.27" />
 
     </LinearLayout>
 
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button2"
         android:layout_below="@+id/layout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp" />
 
 </RelativeLayout>
