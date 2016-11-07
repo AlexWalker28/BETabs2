@@ -21,6 +21,7 @@ public class Main2Activity extends AppCompatActivity {
     EditText group;
     Button button2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,4 +1,4 @@
-package com.example.alexwalker.betabs2;
+package com.backendless.tabs.data;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
@@ -9,29 +9,30 @@ import com.backendless.persistence.BackendlessDataQuery;
 
 public class Lesson
 {
+  private Boolean isOdd;
   private String objectId;
-  private String lessonOrder;
   private String ownerId;
   private Boolean isLecture;
-  private Boolean isOdd;
   private java.util.Date updated;
   private java.util.Date created;
   private LessonNumber lessonNumber;
   private LessonName lessonName;
+  private Address lessonAddress;
   private Week week;
+  private LessonOrder lessonOrder;
+  public Boolean getIsOdd()
+  {
+    return isOdd;
+  }
+
+  public void setIsOdd( Boolean isOdd )
+  {
+    this.isOdd = isOdd;
+  }
+
   public String getObjectId()
   {
     return objectId;
-  }
-
-  public String getLessonOrder()
-  {
-    return lessonOrder;
-  }
-
-  public void setLessonOrder( String lessonOrder )
-  {
-    this.lessonOrder = lessonOrder;
   }
 
   public String getOwnerId()
@@ -47,14 +48,6 @@ public class Lesson
   public void setIsLecture( Boolean isLecture )
   {
     this.isLecture = isLecture;
-  }
-
-  public Boolean getIsOdd() {
-    return isOdd;
-  }
-
-  public void setIsOdd(Boolean odd) {
-    isOdd = odd;
   }
 
   public java.util.Date getUpdated()
@@ -87,6 +80,16 @@ public class Lesson
     this.lessonName = lessonName;
   }
 
+  public Address getLessonAddress()
+  {
+    return lessonAddress;
+  }
+
+  public void setLessonAddress( Address lessonAddress )
+  {
+    this.lessonAddress = lessonAddress;
+  }
+
   public Week getWeek()
   {
     return week;
@@ -95,6 +98,16 @@ public class Lesson
   public void setWeek( Week week )
   {
     this.week = week;
+  }
+
+  public LessonOrder getLessonOrder()
+  {
+    return lessonOrder;
+  }
+
+  public void setLessonOrder( LessonOrder lessonOrder )
+  {
+    this.lessonOrder = lessonOrder;
   }
 
                                                     

@@ -1,4 +1,4 @@
-package com.example.alexwalker.betabs2;
+package com.backendless.tabs.data;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessCollection;
