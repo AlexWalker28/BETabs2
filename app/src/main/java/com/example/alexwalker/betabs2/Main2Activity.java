@@ -20,7 +20,7 @@ public class Main2Activity extends AppCompatActivity {
     ListView listView;
     Spinner faculty;
     Spinner year;
-    Spinner group;
+    EditText group;
     Button button2;
 
     @Override
@@ -30,7 +30,7 @@ public class Main2Activity extends AppCompatActivity {
 
         faculty = (Spinner) findViewById(R.id.facult2);
         year = (Spinner) findViewById(R.id.year2);
-        group = (Spinner) findViewById(R.id.group2);
+        group = (EditText) findViewById(R.id.group2);
         button2 = (Button) findViewById(R.id.button2);
 
 
@@ -39,7 +39,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                
+
 
                 /*Backendless.Persistence.of(Group.class).find(new AsyncCallback<BackendlessCollection<Group>>() {
                     @Override
