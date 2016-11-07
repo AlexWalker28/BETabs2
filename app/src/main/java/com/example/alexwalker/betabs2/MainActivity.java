@@ -1,5 +1,6 @@
 package com.example.alexwalker.betabs2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText year;
     EditText group;
     Button button;
+    Button changeLayout;
     String facultyText;
     String yearText;
     String groupText;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         year = (EditText) findViewById(R.id.year);
         group = (EditText) findViewById(R.id.group);
         listView = (ListView) findViewById(R.id.listViewMain);
+        changeLayout = (Button) findViewById(R.id.change);
 
         faculty.setText("Лечебное дело");
         year.setText("4");
@@ -51,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         button = (Button) findViewById(R.id.button);
+
+
+        changeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+            }
+        });
 
 
         button.setOnClickListener(new View.OnClickListener() {
