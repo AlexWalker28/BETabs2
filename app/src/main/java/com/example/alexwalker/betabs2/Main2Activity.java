@@ -8,17 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.backendless.Backendless;
-import com.backendless.BackendlessCollection;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
 
 public class Main2Activity extends AppCompatActivity {
 
     ListView listView;
-    Spinner faculty;
+    Spinner facultySpinner;
     Spinner year;
     EditText group;
     Button button2;
@@ -28,10 +22,20 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        faculty = (Spinner) findViewById(R.id.facult2);
+        facultySpinner = (Spinner) findViewById(R.id.facult2);
         year = (Spinner) findViewById(R.id.year2);
         group = (EditText) findViewById(R.id.group2);
         button2 = (Button) findViewById(R.id.button2);
+
+
+        ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(this, R.array.YearSpinner, R.layout.support_simple_spinner_dropdown_item);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        ArrayAdapter<CharSequence> facultyAdapter = ArrayAdapter.createFromResource(this, R.array.Faculty, android.R.layout.simple_spinner_item);
+        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        facultySpinner.setAdapter(facultyAdapter);
+        year.setAdapter(yearAdapter);
 
 
 

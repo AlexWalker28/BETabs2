@@ -20,14 +20,14 @@
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/year2" />
+            android:id="@+id/facult2"
+            android:layout_weight="1" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/facult2"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:id="@+id/year2" />
 
         <EditText
             android:layout_width="69dp"
