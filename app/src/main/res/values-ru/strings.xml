@@ -16,4 +16,8 @@
         <item>МПД</item>
     </string-array>
     <string name="app_name">BETabs2</string>
+    <string name="app_name">Расписание</string>
+    <string name="course">Курс</string>
+    <string name="faculty">Факультет</string>
+    <string name="group">Группа</string>
 </resources>

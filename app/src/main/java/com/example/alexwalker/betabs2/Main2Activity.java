@@ -148,7 +148,6 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-
                 /*Backendless.Persistence.of(Group.class).find(new AsyncCallback<BackendlessCollection<Group>>() {
                     @Override
                     public void handleResponse(BackendlessCollection<Group> groupBackendlessCollection) {
