@@ -18,22 +18,24 @@
         android:id="@+id/layout">
 
         <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/year2" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/facult2"
             android:layout_weight="1" />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/year2"
-            android:layout_weight="1" />
+        <EditText
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/group2" />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/group2"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <ListView

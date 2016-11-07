@@ -28,12 +28,10 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        faculty = (Spinner) findViewById(R.id.faculty2);
+        faculty = (Spinner) findViewById(R.id.facult2);
         year = (Spinner) findViewById(R.id.year2);
         group = (Spinner) findViewById(R.id.group2);
         button2 = (Button) findViewById(R.id.button2);
-
-        String[] data = {"Лечебное дело", "Педиатрия",  "Фармация", "Стоматология", "МПД"};
 
 
 
@@ -41,7 +39,7 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                
 
                 /*Backendless.Persistence.of(Group.class).find(new AsyncCallback<BackendlessCollection<Group>>() {
                     @Override
