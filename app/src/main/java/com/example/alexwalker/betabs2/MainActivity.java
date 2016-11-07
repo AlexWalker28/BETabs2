@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     String yearText;
     String groupText;
     ListView listView;
+    Lesson lesson;
+    String lessonName;
+    String week;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 String whereClause = "groupFaculty.faculty = '" + faculty.getText().toString() + "' AND groupYear.year = "
                         + year.getText().toString() + " AND groupNumber = " + group.getText().toString();
                 BackendlessDataQuery dataQuery = new BackendlessDataQuery();
@@ -67,13 +71,53 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void handleResponse(BackendlessCollection<Group> foundGroups) {
                                 Group foundGroup = foundGroups.getData().get(0);
-                                /*textView.setText(foundGroup.getGroupNumber().toString());*/
                                 List<Lesson> lessons = foundGroup.getGroupLesson();
-                                /*for (Lesson lesson : lessons) {
+                                Collections.sort(lessons, new LessonComparator());
+
+                                LessonListAdapter mAdapter;
+                                mAdapter = new LessonListAdapter(MainActivity.this);
+                                mAdapter.addSectionHeaderItem("Понедельник");
+                                //week = Converter.convertDay(lesson.getWeek().getDayOfTheWeek());
+                                int count = lessons.size();
+                                for (int i = 1; i < count; i++) {
+                                    mAdapter.addItem(lessons.get(i).getLessonName().getFullName());
+                                    if (i % 4 == 0) {
+                                        mAdapter.addSectionHeaderItem(Converter.convertDay(lessons.get(i+1).getWeek().getDayOfTheWeek()));
+                                    }
+                                }
+                                listView.setAdapter(mAdapter);
+
+
+                        }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+
+                }
+            });
+
+
+
+
+
+
+                /*String whereClause = "groupFaculty.faculty = '" + faculty.getText().toString() + "' AND groupYear.year = "
+                        + year.getText().toString() + " AND groupNumber = " + group.getText().toString();
+                BackendlessDataQuery dataQuery = new BackendlessDataQuery();
+                dataQuery.setWhereClause(whereClause);
+
+                Backendless.Persistence.of(Group.class).find(dataQuery,
+                        new AsyncCallback<BackendlessCollection<Group>>() {
+                            @Override
+                            public void handleResponse(BackendlessCollection<Group> foundGroups) {
+                                Group foundGroup = foundGroups.getData().get(0);
+                                *//*textView.setText(foundGroup.getGroupNumber().toString());*//*
+                                List<Lesson> lessons = foundGroup.getGroupLesson();
+                                *//*for (Lesson lesson : lessons) {
                                     textView.append("\n" + lesson.getLessonName().getFullName()
                                             + " " + lesson.getLessonNumber().getNumber());
 
-                                }*/
+                                }*//*
                                 Collections.sort(lessons, new LessonComparator());
                                 listView.setAdapter(new LessonsListAdapter(MainActivity.this, lessons));
 
@@ -83,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             public void handleFault(BackendlessFault fault) {
 
                             }
-                        });
+                        });*/
 
 
 
