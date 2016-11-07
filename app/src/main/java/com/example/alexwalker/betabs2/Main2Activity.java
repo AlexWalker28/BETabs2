@@ -30,7 +30,7 @@ public class Main2Activity extends AppCompatActivity {
     Button button2;
     String facultyText;
     String yearText;
-    TextView error;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
         group = (EditText) findViewById(R.id.group2);
         button2 = (Button) findViewById(R.id.button2);
         listView = (ListView) findViewById(R.id.listView2);
-        error = (TextView) findViewById(R.id.textView);
+
 
         final ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(this, R.array.YearSpinner, R.layout.support_simple_spinner_dropdown_item);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -142,7 +142,7 @@ public class Main2Activity extends AppCompatActivity {
                             }
                             @Override
                             public void handleFault(BackendlessFault fault) {
-                                error.setText(fault.toString());
+
                             }
                         });
 
