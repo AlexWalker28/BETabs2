@@ -138,11 +138,24 @@ public class Main2Activity extends AppCompatActivity {
                                 Group foundGroup = foundGroups.getData().get(0);
                                 List<Lesson> lessons = foundGroup.getGroupLesson();
                                 Collections.sort(lessons, new LessonComparator());
-                                listView.setAdapter(new LessonsListAdapter(Main2Activity.this, lessons));
+
+                                LessonListAdapter mAdapter;
+                                mAdapter = new LessonListAdapter(Main2Activity.this);
+                                mAdapter.addSectionHeaderItem("Понедельник");
+                                //week = Converter.convertDay(lesson.getWeek().getDayOfTheWeek());
+                                int count = lessons.size();
+                                for (int i = 1; i < count; i++) {
+                                    mAdapter.addItem(lessons.get(i).getLessonName().getFullName());
+                                    if (i % 4 == 0) {
+                                        mAdapter.addSectionHeaderItem(Converter.convertDay(lessons.get(i+1).getWeek().getDayOfTheWeek()));
+                                    }
+                                }
+                                listView.setAdapter(mAdapter);
 
                             }
+
                             @Override
-                            public void handleFault(BackendlessFault fault) {
+                            public void handleFault(BackendlessFault backendlessFault) {
 
                             }
                         });

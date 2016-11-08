@@ -18,7 +18,6 @@ class LessonListAdapter extends BaseAdapter {
 
     private ArrayList<String> mData = new ArrayList<String>();
     private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
-
     private LayoutInflater mInflater;
 
     public LessonListAdapter(Context context) {
