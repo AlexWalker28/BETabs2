@@ -9,8 +9,6 @@ import com.backendless.persistence.BackendlessDataQuery;
 
 public class Group
 {
-
-  Group (){}
   private String ownerId;
   private Integer groupNumber;
   private java.util.Date created;
