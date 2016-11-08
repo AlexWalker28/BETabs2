@@ -10,52 +10,105 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.alexwalker.betabs2.Main2Activity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/layout">
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/facult2"
-            android:layout_weight="1" />
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.31"
-            android:id="@+id/year2" />
-
-        <EditText
-            android:layout_width="69dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/group2"
-            android:layout_weight="0.27" />
-
-
-    </LinearLayout>
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/listView2"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button2"
-        android:id="@+id/listView2" />
+        android:layout_below="@+id/layout" />
 
-    <Button
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:text="Найти"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/layout"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/layout"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.48">
+
+            <TextView
+                android:text="@string/faculty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_weight="0.48" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:id="@+id/facult2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.31">
+
+            <TextView
+                android:text="@string/course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:layout_weight="0.31" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:layout_weight="0.31"
+                android:id="@+id/year2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.07">
+
+            <TextView
+                android:text="@string/group"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_weight="0.07" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:inputType="number"
+                android:id="@+id/group2"
+                android:layout_weight="0.07"
+                android:layout_below="@+id/layout"
+                android:layout_alignParentStart="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:layout_width="wrap_content" />
+
+            <ImageButton
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:src="@drawable/ic_search_black_24dp"
+                android:id="@+id/button2"
+                android:layout_below="@+id/layout"
+                android:layout_alignParentEnd="true"
+                android:layout_height="37dp"
+                android:layout_width="40dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
