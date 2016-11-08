@@ -41,8 +41,8 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="37dp"
-                android:id="@+id/facult2" />
+                android:id="@+id/facult2"
+                android:layout_height="40dp" />
 
         </LinearLayout>
 
@@ -61,7 +61,7 @@
 
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="37dp"
+                android:layout_height="40dp"
                 android:layout_weight="0.31"
                 android:id="@+id/year2" />
         </LinearLayout>
@@ -81,7 +81,7 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="37dp"
+                android:layout_height="40dp"
                 android:inputType="number"
                 android:id="@+id/group2"
                 android:layout_weight="0.07"
@@ -105,8 +105,8 @@
                 android:id="@+id/button2"
                 android:layout_below="@+id/layout"
                 android:layout_alignParentEnd="true"
-                android:layout_height="37dp"
-                android:layout_width="40dp" />
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
         </LinearLayout>
 
     </LinearLayout>
