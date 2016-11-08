@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class Main2Activity extends AppCompatActivity {
     Spinner facultySpinner;
     Spinner yearSpinner;
     EditText group;
-    Button button2;
+    ImageButton button2;
     String facultyText;
     String yearText;
 
@@ -43,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
         facultySpinner = (Spinner) findViewById(R.id.facult2);
         yearSpinner = (Spinner) findViewById(R.id.year2);
         group = (EditText) findViewById(R.id.group2);
-        button2 = (Button) findViewById(R.id.button2);
+        button2 = (ImageButton) findViewById(R.id.button2);
         listView = (ListView) findViewById(R.id.listView2);
 
 
@@ -156,7 +157,7 @@ public class Main2Activity extends AppCompatActivity {
 
                             @Override
                             public void handleFault(BackendlessFault backendlessFault) {
-
+                                Toast.makeText(getApplicationContext(), backendlessFault.toString(), Toast.LENGTH_LONG).show();
                             }
                         });
 
