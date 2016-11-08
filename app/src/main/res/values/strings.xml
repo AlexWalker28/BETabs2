@@ -19,4 +19,7 @@
     <string name="course">Course</string>
     <string name="app_name">Schedule</string>
     <string name="change_button">Change Layout</string>
+    <string name="switch_odd">Even</string>
+    <string name="switch_lecture">Lecture</string>
+
 </resources>
