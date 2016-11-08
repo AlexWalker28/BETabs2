@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
-class LessonListAdapter extends BaseAdapter {
+class LessonsListAdapter extends BaseAdapter {
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_SEPARATOR = 1;
@@ -20,7 +20,7 @@ class LessonListAdapter extends BaseAdapter {
     private TreeSet<Integer> sectionHeader = new TreeSet<Integer>();
     private LayoutInflater mInflater;
 
-    public LessonListAdapter(Context context) {
+    public LessonsListAdapter(Context context) {
         mInflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

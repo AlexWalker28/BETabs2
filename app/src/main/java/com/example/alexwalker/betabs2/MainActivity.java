@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
                                 List<Lesson> lessons = foundGroup.getGroupLesson();
                                 Collections.sort(lessons, new LessonComparator());
 
-                                LessonListAdapter mAdapter;
-                                mAdapter = new LessonListAdapter(MainActivity.this);
+                                LessonsListAdapter mAdapter;
+                                mAdapter = new LessonsListAdapter(MainActivity.this);
                                 mAdapter.addSectionHeaderItem("Понедельник");
                                 //week = Converter.convertDay(lesson.getWeek().getDayOfTheWeek());
                                 int count = lessons.size();
