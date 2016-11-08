@@ -49,12 +49,13 @@
         android:id="@+id/listView2" />
 
     <Button
-        android:text="Button"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:text="Найти"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
+        android:layout_marginTop="14dp"
         android:layout_below="@+id/layout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
