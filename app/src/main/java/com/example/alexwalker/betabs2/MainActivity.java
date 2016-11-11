@@ -27,10 +27,6 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView lessonAddress;
     AutoCompleteTextView weekDay;
     EditText lessonOrder;
-    /*Faculty faculty = new Faculty();
-    Lesson lessonLesson = new Lesson();
-    Group group = new Group();
-    LessonName lessonNameBE = new LessonName();*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         weekDay.setThreshold(1);
 
         final String lesFaculty = lessonFaculty.getText().toString();
-
         final String lesAddress = lessonAddress.getText().toString();
         final String weekDayText = weekDay.getText().toString();
 
@@ -81,20 +76,25 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String lesName = lessonName.getText().toString();
-                        LessonName lessonName1 = new LessonName();
-                        lessonName1.setFullName(lesName);
-                        Lesson lesson = new Lesson();
-                        lesson.setLessonName(lessonName1);
-                        Backendless.Persistence.save(lesson);
+                        addLessonName();
+
                     }
-                });
+                }).start();
 
 
             }
         });
 
 
+    }
+
+    private void addLessonName() {
+        String lesName = lessonName.getText().toString();
+        LessonName lessonName1 = new LessonName();
+        lessonName1.setFullName(lesName);
+        Lesson lesson = new Lesson();
+        lesson.setLessonName(lessonName1);
+        Backendless.Persistence.save(lesson);
     }
 
 
