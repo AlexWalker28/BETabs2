@@ -8,8 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.backendless.Backendless;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessFault;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView lessonAddress;
     AutoCompleteTextView weekDay;
     EditText lessonOrder;
+    /*Faculty faculty = new Faculty();
+    Lesson lessonLesson = new Lesson();
+    Group group = new Group();
+    LessonName lessonNameBE = new LessonName();*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +69,30 @@ public class MainActivity extends AppCompatActivity {
         weekDay.setAdapter(dayAdapter);
         weekDay.setThreshold(1);
 
+        final String lesFaculty = lessonFaculty.getText().toString();
 
-        String lesFaculty = lessonFaculty.getText().toString();
-        String lesName = lessonName.getText().toString();
-        String lesAddress = lessonAddress.getText().toString();
-        String weekDayText = weekDay.getText().toString();
+        final String lesAddress = lessonAddress.getText().toString();
+        final String weekDayText = weekDay.getText().toString();
 
-        Faculty faculty = null;
-        Lesson lesson = null;
-        Group group = null;
+
+        addLessonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String lesName = lessonName.getText().toString();
+                        LessonName lessonName1 = new LessonName();
+                        lessonName1.setFullName(lesName);
+                        Lesson lesson = new Lesson();
+                        lesson.setLessonName(lessonName1);
+                        Backendless.Persistence.save(lesson);
+                    }
+                });
+
+
+            }
+        });
 
 
     }
@@ -89,5 +111,7 @@ public class MainActivity extends AppCompatActivity {
         addLessonButton = (Button) findViewById(R.id.addButton);
         clearButton = (Button) findViewById(R.id.clearButton);
         changeLayout = (Button) findViewById(R.id.change);
+
+
     }
 }
