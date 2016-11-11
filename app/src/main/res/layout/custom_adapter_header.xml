@@ -6,7 +6,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@android:color/darker_gray"
+        android:background="@color/colorPrimaryDark"
         android:layout_height="20dp">
 
         <TextView
@@ -16,7 +16,7 @@
             android:id="@+id/textSeparator"
             android:layout_weight="1"
             android:gravity="top|center"
-            android:textColor="@android:color/background_dark"
+            android:textColor="#ffffff"
             android:textAllCaps="true"
             android:textIsSelectable="true"
             android:textStyle="normal|bold" />

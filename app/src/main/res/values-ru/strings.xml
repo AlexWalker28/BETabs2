@@ -17,6 +17,9 @@
     </string-array>
     <string name="app_name">Расписание</string>
     <string name="course">Курс</string>
-    <string name="faculty">    Факультет</string>
+    <string name="faculty">Факультет</string>
     <string name="group">Группа</string>
+    <string name="change_button">К расписанию</string>
+    <string name="switch_odd">Четная</string>
+    <string name="switch_lecture">Лекция</string>
 </resources>

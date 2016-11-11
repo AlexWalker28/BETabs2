@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -122,7 +120,6 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,8 +137,8 @@ public class Main2Activity extends AppCompatActivity {
                                 List<Lesson> lessons = foundGroup.getGroupLesson();
                                 Collections.sort(lessons, new LessonComparator());
 
-                                LessonListAdapter mAdapter;
-                                mAdapter = new LessonListAdapter(Main2Activity.this);
+                                LessonsListAdapter mAdapter;
+                                mAdapter = new LessonsListAdapter(Main2Activity.this);
                                 mAdapter.addSectionHeaderItem("Понедельник");
                                 //week = Converter.convertDay(lesson.getWeek().getDayOfTheWeek());
                                 int count = lessons.size();
