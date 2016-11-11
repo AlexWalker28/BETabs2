@@ -65,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
         weekDay.setAdapter(dayAdapter);
         weekDay.setThreshold(1);
 
-        /*final String lesFaculty = lessonFaculty.getText().toString();
-        final String lesAddress = lessonAddress.getText().toString();
-        final String weekDayText = weekDay.getText().toString();*/
-
 
         addLessonButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,10 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 
     private void initVars() {
