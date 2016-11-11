@@ -14,6 +14,8 @@ import com.backendless.Backendless;
 public class MainActivity extends AppCompatActivity {
 
     Button changeLayout;
+    Button addLessonButton;
+    Button clearButton;
     AutoCompleteTextView lessonFaculty;
     EditText lessonCourse;
     EditText lessonGroup;
@@ -59,6 +61,18 @@ public class MainActivity extends AppCompatActivity {
         lessonAddress.setThreshold(1);
         weekDay.setAdapter(dayAdapter);
         weekDay.setThreshold(1);
+
+
+        String lesFaculty = lessonFaculty.getText().toString();
+        String lesName = lessonName.getText().toString();
+        String lesAddress = lessonAddress.getText().toString();
+        String weekDayText = weekDay.getText().toString();
+
+        Faculty faculty = null;
+        Lesson lesson = null;
+        Group group = null;
+
+
     }
 
 
@@ -67,12 +81,13 @@ public class MainActivity extends AppCompatActivity {
         lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
         lessonCourse = (EditText) findViewById(R.id.lessonCourse1);
         lessonGroup = (EditText) findViewById(R.id.lessonGroup1);
-        lessonName = (AutoCompleteTextView)findViewById(R.id.lessonName1);
+        lessonName = (AutoCompleteTextView) findViewById(R.id.lessonName1);
         lessonNumber = (EditText) findViewById(R.id.lessonNumber1);
         lessonAddress = (AutoCompleteTextView) findViewById(R.id.lessonAddress1);
-        weekDay = (AutoCompleteTextView)findViewById(R.id.weekDay1);
+        weekDay = (AutoCompleteTextView) findViewById(R.id.weekDay1);
         lessonOrder = (EditText) findViewById(R.id.lessonOrder1);
-
+        addLessonButton = (Button) findViewById(R.id.addButton);
+        clearButton = (Button) findViewById(R.id.clearButton);
         changeLayout = (Button) findViewById(R.id.change);
     }
 }
