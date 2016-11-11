@@ -40,55 +40,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        ArrayAdapter<String> facultyAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesFaculty);
-        ArrayAdapter<String> courseAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesCourse);
-        ArrayAdapter<String> groupAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesGroup);
-        ArrayAdapter<String> nameAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesName);
-        ArrayAdapter<String> numberAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesNumber);
-        ArrayAdapter<String> addressAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesAddress);
-        ArrayAdapter<String> dayAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, wDay);
-        ArrayAdapter<String> orderAdapter= new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item, lesOrder);
+        final ArrayAdapter<CharSequence> facultyAdapter = ArrayAdapter.createFromResource(this, R.array.Faculty, R.layout.support_simple_spinner_dropdown_item);
+        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<CharSequence> nameAdapter = ArrayAdapter.createFromResource(this, R.array.Subjects, R.layout.support_simple_spinner_dropdown_item);
+        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<CharSequence> addressAdapter = ArrayAdapter.createFromResource(this, R.array.Addresses, R.layout.support_simple_spinner_dropdown_item);
+        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<CharSequence> dayAdapter = ArrayAdapter.createFromResource(this, R.array.Week, R.layout.support_simple_spinner_dropdown_item);
+        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
+        lessonFaculty.setAdapter(facultyAdapter);
+        lessonFaculty.setThreshold(1);
         lessonName.setAdapter(nameAdapter);
-        lessonNumber.setAdapter(numberAdapter);
+        lessonName.setThreshold(1);
         lessonAddress.setAdapter(addressAdapter);
+        lessonAddress.setThreshold(1);
         weekDay.setAdapter(dayAdapter);
-        lessonOrder.setAdapter(orderAdapter);
+        weekDay.setThreshold(1);
     }
-
-    private static final String[] lesFaculty = new String[]{
-
-    };
-    private static final String[] lesCourse = new String[]{
-
-    };
-    private static final String[] lesGroup = new String[]{
-
-    };
-    private static final String[] lesName = new String[]{
-
-    };
-    private static final String[] lesNumber = new String[]{
-
-    };
-    private static final String[] lesAddress = new String[]{
-
-    };
-    private static final String[] wDay = new String[]{
-
-    };
-    private static final String[] lesOrder = new String[]{
-
-    };
 
 
     private void initVars() {
@@ -96,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
         lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
         lessonCourse = (AutoCompleteTextView) findViewById(R.id.lessonCourse1);
         lessonGroup = (AutoCompleteTextView) findViewById(R.id.lessonGroup1);
-        lessonName = (AutoCompleteTextView)findViewById(R.id.lessonName1);
+        lessonName = (AutoCompleteTextView) findViewById(R.id.lessonName1);
         lessonNumber = (AutoCompleteTextView) findViewById(R.id.lessonNumber1);
         lessonAddress = (AutoCompleteTextView) findViewById(R.id.lessonAddress1);
-        weekDay = (AutoCompleteTextView)findViewById(R.id.weekDay1);
-        lessonOrder = (AutoCompleteTextView)findViewById(R.id.lessonOrder1);
+        weekDay = (AutoCompleteTextView) findViewById(R.id.weekDay1);
+        lessonOrder = (AutoCompleteTextView) findViewById(R.id.lessonOrder1);
 
         changeLayout = (Button) findViewById(R.id.change);
     }

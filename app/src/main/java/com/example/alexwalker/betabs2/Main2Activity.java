@@ -140,12 +140,11 @@ public class Main2Activity extends AppCompatActivity {
                                 LessonsListAdapter mAdapter;
                                 mAdapter = new LessonsListAdapter(Main2Activity.this);
                                 mAdapter.addSectionHeaderItem("Понедельник");
-                                //week = Converter.convertDay(lesson.getWeek().getDayOfTheWeek());
                                 int count = lessons.size();
                                 for (int i = 1; i < count; i++) {
                                     mAdapter.addItem(lessons.get(i).getLessonName().getFullName());
                                     if (i % 4 == 0) {
-                                        mAdapter.addSectionHeaderItem(Converter.convertDay(lessons.get(i+1).getWeek().getDayOfTheWeek()));
+                                        mAdapter.addSectionHeaderItem(Converter.convertDay(lessons.get(i).getWeek().getDayOfTheWeek()));
                                     }
                                 }
                                 listView.setAdapter(mAdapter);

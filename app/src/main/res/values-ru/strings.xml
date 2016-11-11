@@ -15,6 +15,41 @@
         <item>Стоматология</item>
         <item>МПД</item>
     </string-array>
+    <string-array name="Subjects">
+        <item>Болезни сердца и сосудов</item>
+        <item>Болезни органов дыхания</item>
+        <item>Болезни ЖКТ</item>
+        <item>Факультетская педиатрия</item>
+        <item>Патанатомия</item>
+        <item>Госпитальная педиатрия</item>
+        <item>Факультетская хирургия</item>
+        <item>Оперативная хирургия</item>
+        <item>Фтизиатрия</item>
+        <item>Болезни раннего возраста</item>
+        <item>ВМП - ВТМЗ</item>
+        <item>Общая гигиена, военная гигиена</item>
+        <item>Офтальмология</item>
+    </string-array>
+    <string-array name="Addresses">
+        <item>ГЛ. №3</item>
+        <item>НХЦ</item>
+        <item>ГКБ №1</item>
+        <item>ГДКБСМП №3</item>
+        <item>НЦКиТ</item>
+        <item>ЗБВ</item>
+        <item>ЛЗ №2</item>
+        <item>БМЗ</item>
+        <item>ЛЗ  №1</item>
+    </string-array>
+    <string-array name="Week">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+    </string-array>
+
     <string name="app_name">Расписание</string>
     <string name="course">Курс</string>
     <string name="faculty">Факультет</string>
