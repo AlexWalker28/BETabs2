@@ -54,7 +54,14 @@
     <string name="course">Курс</string>
     <string name="faculty">Факультет</string>
     <string name="group">Группа</string>
+    <string name="lessonName">Предмет</string>
+    <string name="lessonNumber">Номер пары</string>
+    <string name="lessonAddress">Адрес</string>
+    <string name="weekDay">День недели</string>
+    <string name="lessonOrder">Порядок</string>
     <string name="change_button">К расписанию</string>
-    <string name="switch_odd">Четная</string>
+    <string name="switch_odd">Четная неделя</string>
     <string name="switch_lecture">Лекция</string>
+    <string name="clearButton">Очистить</string>
+    <string name="add_button">Добавить пару</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.backendless.Backendless;
 
@@ -14,13 +15,13 @@ public class MainActivity extends AppCompatActivity {
 
     Button changeLayout;
     AutoCompleteTextView lessonFaculty;
-    AutoCompleteTextView lessonCourse;
-    AutoCompleteTextView lessonGroup;
+    EditText lessonCourse;
+    EditText lessonGroup;
     AutoCompleteTextView lessonName;
-    AutoCompleteTextView lessonNumber;
+    EditText lessonNumber;
     AutoCompleteTextView lessonAddress;
     AutoCompleteTextView weekDay;
-    AutoCompleteTextView lessonOrder;
+    EditText lessonOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
     private void initVars() {
 
         lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
-        lessonCourse = (AutoCompleteTextView) findViewById(R.id.lessonCourse1);
-        lessonGroup = (AutoCompleteTextView) findViewById(R.id.lessonGroup1);
-        lessonName = (AutoCompleteTextView) findViewById(R.id.lessonName1);
-        lessonNumber = (AutoCompleteTextView) findViewById(R.id.lessonNumber1);
+        lessonCourse = (EditText) findViewById(R.id.lessonCourse1);
+        lessonGroup = (EditText) findViewById(R.id.lessonGroup1);
+        lessonName = (AutoCompleteTextView)findViewById(R.id.lessonName1);
+        lessonNumber = (EditText) findViewById(R.id.lessonNumber1);
         lessonAddress = (AutoCompleteTextView) findViewById(R.id.lessonAddress1);
-        weekDay = (AutoCompleteTextView) findViewById(R.id.weekDay1);
-        lessonOrder = (AutoCompleteTextView) findViewById(R.id.lessonOrder1);
+        weekDay = (AutoCompleteTextView)findViewById(R.id.weekDay1);
+        lessonOrder = (EditText) findViewById(R.id.lessonOrder1);
 
         changeLayout = (Button) findViewById(R.id.change);
     }

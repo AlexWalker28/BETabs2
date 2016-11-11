@@ -19,8 +19,15 @@
     <string name="group">Group</string>
     <string name="course">Course</string>
     <string name="app_name">Schedule</string>
+    <string name="lessonName">Subject</string>
+    <string name="lessonNumber">Lesson number</string>
+    <string name="lessonAddress">Address</string>
+    <string name="weekDay">Week day</string>
+    <string name="lessonOrder">Order</string>
     <string name="change_button">Change Layout</string>
-    <string name="switch_odd">Even</string>
+    <string name="switch_odd">Is odd</string>
+    <string name="clearButton">Clear</string>
     <string name="switch_lecture">Lecture</string>
+    <string name="add_button">Add</string>
 
 </resources>
