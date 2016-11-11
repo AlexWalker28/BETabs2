@@ -65,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         weekDay.setAdapter(dayAdapter);
         weekDay.setThreshold(1);
 
-        final String lesFaculty = lessonFaculty.getText().toString();
+        /*final String lesFaculty = lessonFaculty.getText().toString();
         final String lesAddress = lessonAddress.getText().toString();
-        final String weekDayText = weekDay.getText().toString();
+        final String weekDayText = weekDay.getText().toString();*/
 
 
         addLessonButton.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,34 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        addLessonName();
+                        String lesName = lessonName.getText().toString();
+                        LessonName lessonName1 = new LessonName();
+                        lessonName1.setFullName(lesName);
+
+                        String lesNumber = lessonNumber.getText().toString();
+                        LessonNumber lessonNumber = new LessonNumber();
+                        lessonNumber.setNumber(lesNumber);
+
+                        String lesAddress = lessonAddress.getText().toString();
+                        Address lessonAddress = new Address();
+                        lessonAddress.setAddress(lesAddress);
+
+                        String lesDay = weekDay.getText().toString();
+                        Week week = new Week();
+                        week.setDayOfTheWeek(Converter.convertDayToInteger(lesDay));
+
+                        String lesOrder = lessonOrder.getText().toString();
+                        LessonOrder lessonOrder = new LessonOrder();
+                        lessonOrder.setOrder(Integer.valueOf(lesOrder));
+
+                        Lesson lesson = new Lesson();
+                        lesson.setLessonName(lessonName1);
+                        lesson.setLessonNumber(lessonNumber);
+                        lesson.setLessonAddress(lessonAddress);
+                        lesson.setWeek(week);
+                        lesson.setLessonOrder(lessonOrder);
+                        Backendless.Persistence.save(lesson);
+
 
                     }
                 }).start();
@@ -88,14 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addLessonName() {
-        String lesName = lessonName.getText().toString();
-        LessonName lessonName1 = new LessonName();
-        lessonName1.setFullName(lesName);
-        Lesson lesson = new Lesson();
-        lesson.setLessonName(lessonName1);
-        Backendless.Persistence.save(lesson);
-    }
+
+
+
 
 
     private void initVars() {

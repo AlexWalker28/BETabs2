@@ -32,6 +32,31 @@ public class Converter {
         return day;
     }
 
+    public static int convertDayToInteger(String dayToConvert){
+        int day = 0;
+        switch (dayToConvert){
+            case "Понедельник":
+                day = 1;
+                break;
+            case "Вторник":
+                day = 2;
+                break;
+            case "Среда":
+                day = 3;
+                break;
+            case "Четверг":
+                day = 4;
+                break;
+            case "Пятница":
+                day = 5;
+                break;
+            case "Суббота":
+                day = 6;
+                break;
+        }
+        return day;
+    }
+
     public static String convertLessonNumber(String numberToConvert){
         String number = "";
         switch (numberToConvert){
