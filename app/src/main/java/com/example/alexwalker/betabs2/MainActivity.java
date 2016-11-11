@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView lessonAddress;
     AutoCompleteTextView weekDay;
     EditText lessonOrder;
+    Switch isLecture;
+    Switch isOdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
     private void initVars() {
 
         lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
@@ -133,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
         addLessonButton = (Button) findViewById(R.id.addButton);
         clearButton = (Button) findViewById(R.id.clearButton);
         changeLayout = (Button) findViewById(R.id.change);
-
+        isLecture = (Switch) findViewById(R.id.isLecture1);
+        isOdd = (Switch) findViewById(R.id.isOdd1);
 
     }
 }
