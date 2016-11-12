@@ -68,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
         weekDay.setAdapter(dayAdapter);
         weekDay.setThreshold(1);
 
-        /*final String lesFaculty = lessonFaculty.getText().toString();
-        final String lesAddress = lessonAddress.getText().toString();
-        final String weekDayText = weekDay.getText().toString();*/
-
 
         addLessonButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
                         lesson.setLessonAddress(lessonAddress);
                         lesson.setWeek(week);
                         lesson.setLessonOrder(lessonOrder);
+                        if (isLecture.isChecked()) lesson.setIsLecture(true);
+                        if (isOdd.isChecked()) lesson.setIsOdd(true);
+
                         Backendless.Persistence.save(lesson);
 
 
