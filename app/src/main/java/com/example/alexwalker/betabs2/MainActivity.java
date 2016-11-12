@@ -1,6 +1,7 @@
 package com.example.alexwalker.betabs2;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,11 +10,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.backendless.Backendless;
-import com.backendless.async.callback.AsyncCallback;
-import com.backendless.exceptions.BackendlessFault;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Button addLessonButton;
     Button clearButton;
     AutoCompleteTextView lessonFaculty;
-    EditText lessonCourse;
-    EditText lessonGroup;
+    EditText groupYear;
+    EditText groupNumber;
     AutoCompleteTextView lessonName;
     EditText lessonNumber;
     AutoCompleteTextView lessonAddress;
@@ -95,6 +98,128 @@ public class MainActivity extends AppCompatActivity {
                         LessonOrder lessonOrder = new LessonOrder();
                         lessonOrder.setOrder(Integer.valueOf(lesOrder));
 
+                        List<Lesson> lessonList = new List<Lesson>() {
+                            @Override
+                            public int size() {
+                                return 0;
+                            }
+
+                            @Override
+                            public boolean isEmpty() {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean contains(Object o) {
+                                return false;
+                            }
+
+                            @NonNull
+                            @Override
+                            public Iterator<Lesson> iterator() {
+                                return null;
+                            }
+
+                            @NonNull
+                            @Override
+                            public Object[] toArray() {
+                                return new Object[0];
+                            }
+
+                            @NonNull
+                            @Override
+                            public <T> T[] toArray(T[] ts) {
+                                return null;
+                            }
+
+                            @Override
+                            public boolean add(Lesson lesson) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean remove(Object o) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean containsAll(Collection<?> collection) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean addAll(Collection<? extends Lesson> collection) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean addAll(int i, Collection<? extends Lesson> collection) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean removeAll(Collection<?> collection) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean retainAll(Collection<?> collection) {
+                                return false;
+                            }
+
+                            @Override
+                            public void clear() {
+
+                            }
+
+                            @Override
+                            public Lesson get(int i) {
+                                return null;
+                            }
+
+                            @Override
+                            public Lesson set(int i, Lesson lesson) {
+                                return null;
+                            }
+
+                            @Override
+                            public void add(int i, Lesson lesson) {
+
+                            }
+
+                            @Override
+                            public Lesson remove(int i) {
+                                return null;
+                            }
+
+                            @Override
+                            public int indexOf(Object o) {
+                                return 0;
+                            }
+
+                            @Override
+                            public int lastIndexOf(Object o) {
+                                return 0;
+                            }
+
+                            @Override
+                            public ListIterator<Lesson> listIterator() {
+                                return null;
+                            }
+
+                            @NonNull
+                            @Override
+                            public ListIterator<Lesson> listIterator(int i) {
+                                return null;
+                            }
+
+                            @NonNull
+                            @Override
+                            public List<Lesson> subList(int i, int i1) {
+                                return null;
+                            }
+                        };
+
                         Lesson lesson = new Lesson();
                         lesson.setLessonName(lessonName1);
                         lesson.setLessonNumber(lessonNumber);
@@ -104,7 +229,24 @@ public class MainActivity extends AppCompatActivity {
                         if (isLecture.isChecked()) lesson.setIsLecture(true);
                         if (isOdd.isChecked()) lesson.setIsOdd(true);
 
-                        Backendless.Persistence.save(lesson);
+                        lessonList.add(lesson);
+
+                        String lesFaculty = lessonFaculty.getText().toString();
+                        Faculty faculty = new Faculty();
+                        faculty.setFaculty(lesFaculty);
+
+                        String grYear = groupYear.getText().toString();
+                        Year year = new Year();
+                        year.setYear(Integer.valueOf(grYear));
+
+                        String groupNumberBE = groupNumber.getText().toString();
+                        Group group = new Group();
+                        group.setGroupFaculty(faculty);
+                        group.setGroupNumber(Integer.valueOf(groupNumberBE));
+                        group.setGroupLesson(lessonList);
+                        group.setGroupYear(year);
+
+                        Backendless.Persistence.save(group);
 
 
                     }
@@ -121,8 +263,8 @@ public class MainActivity extends AppCompatActivity {
     private void initVars() {
 
         lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
-        lessonCourse = (EditText) findViewById(R.id.lessonCourse1);
-        lessonGroup = (EditText) findViewById(R.id.lessonGroup1);
+        groupYear = (EditText) findViewById(R.id.lessonCourse1);
+        groupNumber = (EditText) findViewById(R.id.lessonGroup1);
         lessonName = (AutoCompleteTextView) findViewById(R.id.lessonName1);
         lessonNumber = (EditText) findViewById(R.id.lessonNumber1);
         lessonAddress = (AutoCompleteTextView) findViewById(R.id.lessonAddress1);
