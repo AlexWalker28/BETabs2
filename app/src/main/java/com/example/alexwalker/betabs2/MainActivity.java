@@ -85,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
                         String lesNumber = lessonNumber.getText().toString();
                         String lesDay = weekDay.getText().toString();
                         String lesOrder = lessonOrder.getText().toString();
+                        String grYear = groupYear.getText().toString();
 
                         String lesAddress = lessonAddress.getText().toString();
                         Address lessonAddress = new Address();
                         lessonAddress.setAddress(lesAddress);
-
 
 
                         List<Lesson> lessonList = new List<Lesson>() {
@@ -220,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
                         lesson.setLessonAddress(lessonAddress);
                         lesson.setDayOfWeek(Integer.valueOf(lesDay));
                         lesson.setOrder(Integer.valueOf(lesOrder));
+                        lesson.setYear(Integer.valueOf(grYear));
                         if (isLecture.isChecked()) lesson.setIsLecture(true);
                         if (isOdd.isChecked()) lesson.setIsOdd(true);
 
@@ -229,16 +230,12 @@ public class MainActivity extends AppCompatActivity {
                         Faculty faculty = new Faculty();
                         faculty.setFaculty(lesFaculty);
 
-                        String grYear = groupYear.getText().toString();
-                        Year year = new Year();
-                        year.setYear(Integer.valueOf(grYear));
 
                         String groupNumberBE = groupNumber.getText().toString();
                         Group group = new Group();
                         group.setGroupFaculty(faculty);
                         group.setGroupNumber(Integer.valueOf(groupNumberBE));
                         group.setGroupLesson(lessonList);
-                        group.setGroupYear(year);
 
                         Backendless.Persistence.save(group);
 
