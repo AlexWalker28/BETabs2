@@ -11,15 +11,17 @@ public class Lesson
 {
   private Boolean isOdd;
   private String objectId;
+  private Integer number;
+  private Integer order;
   private String ownerId;
+  private Integer dayOfWeek;
+  private Integer year;
   private Boolean isLecture;
+  private Double serialVersionUID;
   private java.util.Date updated;
   private java.util.Date created;
-  private LessonNumber lessonNumber;
-  private LessonName lessonName;
+  private Subject lessonName;
   private Address lessonAddress;
-  private Week week;
-  private LessonOrder lessonOrder;
   public Boolean getIsOdd()
   {
     return isOdd;
@@ -35,9 +37,49 @@ public class Lesson
     return objectId;
   }
 
+  public Integer getNumber()
+  {
+    return number;
+  }
+
+  public void setNumber( Integer number )
+  {
+    this.number = number;
+  }
+
+  public Integer getOrder()
+  {
+    return order;
+  }
+
+  public void setOrder( Integer order )
+  {
+    this.order = order;
+  }
+
   public String getOwnerId()
   {
     return ownerId;
+  }
+
+  public Integer getDayOfWeek()
+  {
+    return dayOfWeek;
+  }
+
+  public void setDayOfWeek( Integer dayOfWeek )
+  {
+    this.dayOfWeek = dayOfWeek;
+  }
+
+  public Integer getYear()
+  {
+    return year;
+  }
+
+  public void setYear( Integer year )
+  {
+    this.year = year;
   }
 
   public Boolean getIsLecture()
@@ -50,6 +92,16 @@ public class Lesson
     this.isLecture = isLecture;
   }
 
+  public Double getSerialVersionUID()
+  {
+    return serialVersionUID;
+  }
+
+  public void setSerialVersionUID( Double serialVersionUID )
+  {
+    this.serialVersionUID = serialVersionUID;
+  }
+
   public java.util.Date getUpdated()
   {
     return updated;
@@ -60,22 +112,12 @@ public class Lesson
     return created;
   }
 
-  public LessonNumber getLessonNumber()
-  {
-    return lessonNumber;
-  }
-
-  public void setLessonNumber( LessonNumber lessonNumber )
-  {
-    this.lessonNumber = lessonNumber;
-  }
-
-  public LessonName getLessonName()
+  public Subject getLessonName()
   {
     return lessonName;
   }
 
-  public void setLessonName( LessonName lessonName )
+  public void setLessonName( Subject lessonName )
   {
     this.lessonName = lessonName;
   }
@@ -88,26 +130,6 @@ public class Lesson
   public void setLessonAddress( Address lessonAddress )
   {
     this.lessonAddress = lessonAddress;
-  }
-
-  public Week getWeek()
-  {
-    return week;
-  }
-
-  public void setWeek( Week week )
-  {
-    this.week = week;
-  }
-
-  public LessonOrder getLessonOrder()
-  {
-    return lessonOrder;
-  }
-
-  public void setLessonOrder( LessonOrder lessonOrder )
-  {
-    this.lessonOrder = lessonOrder;
   }
 
                                                     

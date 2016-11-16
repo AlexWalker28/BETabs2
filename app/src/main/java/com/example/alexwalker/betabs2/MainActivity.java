@@ -79,24 +79,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         String lesName = lessonName.getText().toString();
-                        LessonName lessonName1 = new LessonName();
+                        Subject lessonName1 = new Subject();
                         lessonName1.setFullName(lesName);
 
                         String lesNumber = lessonNumber.getText().toString();
-                        LessonNumber lessonNumber = new LessonNumber();
-                        lessonNumber.setNumber(lesNumber);
+                        String lesDay = weekDay.getText().toString();
+                        String lesOrder = lessonOrder.getText().toString();
 
                         String lesAddress = lessonAddress.getText().toString();
                         Address lessonAddress = new Address();
                         lessonAddress.setAddress(lesAddress);
 
-                        String lesDay = weekDay.getText().toString();
-                        Week week = new Week();
-                        week.setDayOfTheWeek(Converter.convertDayToInteger(lesDay));
 
-                        String lesOrder = lessonOrder.getText().toString();
-                        LessonOrder lessonOrder = new LessonOrder();
-                        lessonOrder.setOrder(Integer.valueOf(lesOrder));
 
                         List<Lesson> lessonList = new List<Lesson>() {
                             @Override
@@ -222,10 +216,10 @@ public class MainActivity extends AppCompatActivity {
 
                         Lesson lesson = new Lesson();
                         lesson.setLessonName(lessonName1);
-                        lesson.setLessonNumber(lessonNumber);
+                        lesson.setNumber(Integer.valueOf(lesNumber));
                         lesson.setLessonAddress(lessonAddress);
-                        lesson.setWeek(week);
-                        lesson.setLessonOrder(lessonOrder);
+                        lesson.setDayOfWeek(Integer.valueOf(lesDay));
+                        lesson.setOrder(Integer.valueOf(lesOrder));
                         if (isLecture.isChecked()) lesson.setIsLecture(true);
                         if (isOdd.isChecked()) lesson.setIsOdd(true);
 
