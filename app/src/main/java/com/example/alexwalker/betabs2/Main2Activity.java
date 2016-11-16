@@ -124,8 +124,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String whereClause = "groupFaculty.faculty = '" + facultyText + "' AND groupYear.year = "
-                        + yearText + " AND groupNumber = " + group.getText().toString();
+                String whereClause ="groupFaculty.faculty = '"+facultySpinner+"' AND year = "+
+                        yearSpinner+" AND groupNumber = "+group.getText().toString();
+
                 BackendlessDataQuery dataQuery = new BackendlessDataQuery();
                 dataQuery.setWhereClause(whereClause);
 
