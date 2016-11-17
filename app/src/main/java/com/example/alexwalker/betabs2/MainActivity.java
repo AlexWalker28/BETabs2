@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         String lesName = lessonName.getText().toString();
                         Subject lessonName1 = new Subject();
+                        // TODO query to get subject, query to get group
                         lessonName1.setFullName(lesName);
 
                         String lesNumber = lessonNumber.getText().toString();
@@ -92,127 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         lessonAddress.setAddress(lesAddress);
 
 
-                        List<Lesson> lessonList = new List<Lesson>() {
-                            @Override
-                            public int size() {
-                                return 0;
-                            }
 
-                            @Override
-                            public boolean isEmpty() {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean contains(Object o) {
-                                return false;
-                            }
-
-                            @NonNull
-                            @Override
-                            public Iterator<Lesson> iterator() {
-                                return null;
-                            }
-
-                            @NonNull
-                            @Override
-                            public Object[] toArray() {
-                                return new Object[0];
-                            }
-
-                            @NonNull
-                            @Override
-                            public <T> T[] toArray(T[] ts) {
-                                return null;
-                            }
-
-                            @Override
-                            public boolean add(Lesson lesson) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean remove(Object o) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean containsAll(Collection<?> collection) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean addAll(Collection<? extends Lesson> collection) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean addAll(int i, Collection<? extends Lesson> collection) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean removeAll(Collection<?> collection) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean retainAll(Collection<?> collection) {
-                                return false;
-                            }
-
-                            @Override
-                            public void clear() {
-
-                            }
-
-                            @Override
-                            public Lesson get(int i) {
-                                return null;
-                            }
-
-                            @Override
-                            public Lesson set(int i, Lesson lesson) {
-                                return null;
-                            }
-
-                            @Override
-                            public void add(int i, Lesson lesson) {
-
-                            }
-
-                            @Override
-                            public Lesson remove(int i) {
-                                return null;
-                            }
-
-                            @Override
-                            public int indexOf(Object o) {
-                                return 0;
-                            }
-
-                            @Override
-                            public int lastIndexOf(Object o) {
-                                return 0;
-                            }
-
-                            @Override
-                            public ListIterator<Lesson> listIterator() {
-                                return null;
-                            }
-
-                            @NonNull
-                            @Override
-                            public ListIterator<Lesson> listIterator(int i) {
-                                return null;
-                            }
-
-                            @NonNull
-                            @Override
-                            public List<Lesson> subList(int i, int i1) {
-                                return null;
-                            }
-                        };
 
                         Lesson lesson = new Lesson();
                         lesson.setLessonName(lessonName1);

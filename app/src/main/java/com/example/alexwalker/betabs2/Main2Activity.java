@@ -31,7 +31,6 @@ public class Main2Activity extends AppCompatActivity {
     String yearText;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +59,7 @@ public class Main2Activity extends AppCompatActivity {
         facultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         facultyText = "Лечебное дело";
                         break;
@@ -89,7 +88,7 @@ public class Main2Activity extends AppCompatActivity {
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         yearText = "1";
                         break;
@@ -118,13 +117,12 @@ public class Main2Activity extends AppCompatActivity {
         });
 
 
-
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String whereClause = "groupFaculty.faculty = '"+facultySpinner+"' AND year = "+
-                        yearSpinner+" AND groupNumber = "+group.getText().toString();
+                String whereClause = "groupFaculty.faculty = '" + facultyText + "' AND year = " +
+                        yearText + " AND groupNumber = '" + group.getText().toString() + "'";
                 BackendlessDataQuery dataQuery = new BackendlessDataQuery();
                 dataQuery.setWhereClause(whereClause);
 
