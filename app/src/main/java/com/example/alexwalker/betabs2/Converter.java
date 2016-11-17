@@ -72,16 +72,16 @@ public class Converter {
             case "4":
                 number = "14:30 - 16:05";
                 break;
-            case "1+":
+            case "5":
                 number = "7:00 - 9:15";
                 break;
-            case "2+":
+            case "6":
                 number = "9:20 - 11:40";
                 break;
-            case "3+":
+            case "7":
                 number = "12:15 - 14:35";
                 break;
-            case "4+":
+            case "8":
                 number = "15:00 - 17:15";
         }
         return number;

@@ -12,10 +12,11 @@ public class Group
   private String ownerId;
   private Integer groupNumber;
   private java.util.Date created;
+  private Double serialVersionUID;
   private java.util.Date updated;
   private String objectId;
+  private Integer year;
   private Faculty groupFaculty;
-  private Year groupYear;
   private java.util.List<Lesson> groupLesson;
   public String getOwnerId()
   {
@@ -37,6 +38,16 @@ public class Group
     return created;
   }
 
+  public Double getSerialVersionUID()
+  {
+    return serialVersionUID;
+  }
+
+  public void setSerialVersionUID( Double serialVersionUID )
+  {
+    this.serialVersionUID = serialVersionUID;
+  }
+
   public java.util.Date getUpdated()
   {
     return updated;
@@ -47,6 +58,16 @@ public class Group
     return objectId;
   }
 
+  public Integer getYear()
+  {
+    return year;
+  }
+
+  public void setYear( Integer year )
+  {
+    this.year = year;
+  }
+
   public Faculty getGroupFaculty()
   {
     return groupFaculty;
@@ -55,16 +76,6 @@ public class Group
   public void setGroupFaculty( Faculty groupFaculty )
   {
     this.groupFaculty = groupFaculty;
-  }
-
-  public Year getGroupYear()
-  {
-    return groupYear;
-  }
-
-  public void setGroupYear( Year groupYear )
-  {
-    this.groupYear = groupYear;
   }
 
   public java.util.List<Lesson> getGroupLesson()
