@@ -108,7 +108,6 @@ public class Main2Activity extends AppCompatActivity {
                     case 5:
                         yearText = "6";
                         break;
-
                 }
             }
 
