@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private String numberOfGroup;
     private String lessonNameString;
     private String lessonAddressString;
+    private String lesNumber;
+    private String lesDay;
+    private String lesOrder;
+    private String grYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 numberOfGroup = groupNumber.getText().toString();
                 lessonNameString = lessonName.getText().toString();
                 lessonAddressString = lessonAddress.getText().toString();
+                lesNumber = lessonNumber.getText().toString();
+                lesDay   = weekDay.getText().toString();
+                lesOrder = lessonOrder.getText().toString();
+                grYear   = groupYear.getText().toString();
                 new ListSubjectsTask().execute();
 
 
@@ -90,42 +98,17 @@ public class MainActivity extends AppCompatActivity {
                         Subject lessonName1 = new Subject();
                         // TODO query to get subject, query to get group
                         lessonName1.setFullName(lesName);
-
-
-                        String lesNumber = lessonNumber.getText().toString();
-                        String lesDay = weekDay.getText().toString();
-                        String lesOrder = lessonOrder.getText().toString();
-                        String grYear = groupYear.getText().toString();
-
-
-                        Lesson lesson = new Lesson();
+/*                        Lesson lesson = new Lesson();
                         lesson.setLessonName(lessonName1);
 
-                       /* String lesAddress = lessonAddress.getText().toString();
-                        Address lessonAddress = new Address();
-                        lessonAddress.setAddress(lesAddress);
-
-
-
-
-                        Lesson lesson = new Lesson();
-                        lesson.setLessonName(lessonName1);
-                        lesson.setNumber(Integer.valueOf(lesNumber));
-                        lesson.setLessonAddress(lessonAddress);
-                        lesson.setDayOfWeek(Integer.valueOf(lesDay));
                         lesson.setOrder(Integer.valueOf(lesOrder));
                         lesson.setYear(Integer.valueOf(grYear));
-                        if (isLecture.isChecked()) lesson.setIsLecture(true);
-                        if (isOdd.isChecked()) lesson.setIsOdd(true);
-
 
                         lessonList.add(lesson);
-
 
                         String lesFaculty = lessonFaculty.getText().toString();
                         Faculty faculty = new Faculty();
                         faculty.setFaculty(lesFaculty);
-
 
                         String groupNumberBE = groupNumber.getText().toString();
                         Group group = new Group();
@@ -135,15 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
                         Backendless.Persistence.save(group);*/
 
-
                     }
                 }).start();
-
-
             }
         });
-
-
     }
 
 
@@ -168,9 +146,9 @@ public class MainActivity extends AppCompatActivity {
     private class ListSubjectsTask extends AsyncTask<Object, Object, String[]> {
         protected String[] doInBackground(Object... num) {
 
-            String whereClauseGroup = "groupNumber = '" + Integer.valueOf(numberOfGroup) + "'";
+            String whereClauseGroup = "groupFaculty.faculty = '"+Integer.valueOf(numberOfGroup)+"' AND groupNumber = "+numberOfGroup+" AND year = "+grYear;
             String whereClauseSubject = "fullName = '" + lessonNameString + "'";
-            String whereClauseAddress = "address = 'ЗБВ'";
+            String whereClauseAddress = "address = '"+lessonAddressString+"'";
 
             BackendlessDataQuery groupQuery = new BackendlessDataQuery();
             groupQuery.setWhereClause(whereClauseGroup);
@@ -181,19 +159,33 @@ public class MainActivity extends AppCompatActivity {
             BackendlessDataQuery addressQuery = new BackendlessDataQuery();
             addressQuery.setWhereClause(whereClauseAddress);
 
-            String[] results = new String[3];
+            String[] results = new String[0];
 
             BackendlessCollection<Group> groups = Backendless.Persistence.of(Group.class).find(groupQuery);
-            results[0] = groups.getData().get(0).getGroupNumber().toString();
+            Group group = groups.getData().get(0);
 
             BackendlessCollection<Subject> subjects = Backendless.Persistence.of(Subject.class).find(subjectQuery);
-            results[1] = subjects.getData().get(0).getFullName();
+            Subject subject = subjects.getData().get(0);
 
-            BackendlessCollection<Address> address = Backendless.Persistence.of(Address.class).find(addressQuery);
-            results[2] = address.getData().get(0).getAddress();
+            BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
+            Address address = addresses.getData().get(0);
 
+            Lesson lesson = new Lesson();
+            lesson.setLessonName(subject);
+            lesson.setLessonAddress(address);
+            lesson.setNumber(Integer.valueOf(lesNumber));
+            lesson.setDayOfWeek(Integer.valueOf(lesDay));
+            lesson.setOrder(Integer.valueOf(lesOrder));
+            lesson.setYear(Integer.valueOf(grYear));
+            //if (isLecture.isChecked()) lesson.setIsLecture(true);
+            //if (isOdd.isChecked()) lesson.setIsOdd(true);
+
+
+            group.getGroupLesson().add(lesson);
+            Backendless.Persistence.save(group);
+
+            results [0] = "Success";
             return results;
-
         }
 
         protected void onProgressUpdate(Object... progress) {
@@ -202,10 +194,10 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(String[] result) {
 
-            Toast.makeText(getApplicationContext(), result[0] + " " + result[1] + " " + result[2], Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
         }
 
-
     }
+
 }
