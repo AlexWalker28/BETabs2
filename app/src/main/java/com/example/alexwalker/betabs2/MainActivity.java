@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
             String whereClauseGroup = "groupNumber = '" + Integer.valueOf(numberOfGroup) + "'";
             String whereClauseSubject = "fullName = '" + lessonNameString + "'";
-            String whereClauseAddress = "address = '" + lessonAddressString + "'";
+            String whereClauseAddress = "address = 'ЗБВ'";
 
             BackendlessDataQuery groupQuery = new BackendlessDataQuery();
             groupQuery.setWhereClause(whereClauseGroup);
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             subjectQuery.setWhereClause(whereClauseSubject);
 
             BackendlessDataQuery addressQuery = new BackendlessDataQuery();
-            subjectQuery.setWhereClause(whereClauseAddress);
+            addressQuery.setWhereClause(whereClauseAddress);
 
             String[] results = new String[3];
 
