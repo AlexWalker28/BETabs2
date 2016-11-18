@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private String lesNumber;
     private String lesDay;
     private String lesOrder;
+    private String lesFaculty;
     private String grYear;
     private Boolean odd;
     private Boolean lecture;
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 numberOfGroup = groupNumber.getText().toString();
                 lessonNameString = lessonName.getText().toString();
                 lessonAddressString = lessonAddress.getText().toString();
+                lesFaculty = lessonFaculty.getText().toString();
                 lesNumber = lessonNumber.getText().toString();
                 lesDay   = weekDay.getText().toString();
                 lesOrder = lessonOrder.getText().toString();
@@ -107,12 +109,17 @@ public class MainActivity extends AppCompatActivity {
 
                         lesson.setOrder(Integer.valueOf(lesOrder));
                         lesson.setYear(Integer.valueOf(grYear));
+                        if (isLecture.isChecked()) lesson.setIsLecture(true);
+                        if (isOdd.isChecked()) lesson.setIsOdd(true);
+
 
                         lessonList.add(lesson);
+
 
                         String lesFaculty = lessonFaculty.getText().toString();
                         Faculty faculty = new Faculty();
                         faculty.setFaculty(lesFaculty);
+
 
                         String groupNumberBE = groupNumber.getText().toString();
                         Group group = new Group();
@@ -122,10 +129,15 @@ public class MainActivity extends AppCompatActivity {
 
                         Backendless.Persistence.save(group);*/
 
+
                     }
                 }).start();
+
+
             }
         });
+
+
     }
 
 
@@ -147,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class ListSubjectsTask extends AsyncTask<Object, Object, String[]> {
-        protected String[] doInBackground(Object... num) {
+    private class ListSubjectsTask extends AsyncTask<Object, Object, String> {
+        protected String doInBackground(Object... num) {
 
-            String whereClauseGroup = "groupFaculty.faculty = '"+Integer.valueOf(numberOfGroup)+"' AND groupNumber = "+numberOfGroup+" AND year = "+grYear;
+            String whereClauseGroup = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" AND year = "+grYear;
             String whereClauseSubject = "fullName = '" + lessonNameString + "'";
             String whereClauseAddress = "address = '"+lessonAddressString+"'";
 
@@ -162,8 +174,6 @@ public class MainActivity extends AppCompatActivity {
 
             BackendlessDataQuery addressQuery = new BackendlessDataQuery();
             addressQuery.setWhereClause(whereClauseAddress);
-
-            String[] results = new String[0];
 
             BackendlessCollection<Group> groups = Backendless.Persistence.of(Group.class).find(groupQuery);
             Group group = groups.getData().get(0);
@@ -178,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             lesson.setLessonName(subject);
             lesson.setLessonAddress(address);
             lesson.setNumber(Integer.valueOf(lesNumber));
-            lesson.setDayOfWeek(Integer.valueOf(lesDay));
+            lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
             lesson.setOrder(Integer.valueOf(lesOrder));
             lesson.setYear(Integer.valueOf(grYear));
             if (lecture) lesson.setIsLecture(true);
@@ -188,19 +198,20 @@ public class MainActivity extends AppCompatActivity {
             group.getGroupLesson().add(lesson);
             Backendless.Persistence.save(group);
 
-            results [0] = "Success";
-            return results;
+            String returnString = "Saved successfully";
+            return returnString;
         }
 
         protected void onProgressUpdate(Object... progress) {
 
         }
 
-        protected void onPostExecute(String[] result) {
+        protected void onPostExecute(String result) {
 
             Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
         }
+
 
     }
 
