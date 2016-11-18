@@ -1,7 +1,7 @@
 package com.example.alexwalker.betabs2;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +10,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.backendless.Backendless;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import com.backendless.BackendlessCollection;
+import com.backendless.persistence.BackendlessDataQuery;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText lessonOrder;
     Switch isLecture;
     Switch isOdd;
+    private String numGr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
         addLessonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                numGr = groupNumber.getText().toString();
+                new ListSubjectsTask().execute();
+
+
+
+
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -83,12 +90,18 @@ public class MainActivity extends AppCompatActivity {
                         // TODO query to get subject, query to get group
                         lessonName1.setFullName(lesName);
 
+
+
+
+
+
+
                         String lesNumber = lessonNumber.getText().toString();
                         String lesDay = weekDay.getText().toString();
                         String lesOrder = lessonOrder.getText().toString();
                         String grYear = groupYear.getText().toString();
 
-                        String lesAddress = lessonAddress.getText().toString();
+                       /* String lesAddress = lessonAddress.getText().toString();
                         Address lessonAddress = new Address();
                         lessonAddress.setAddress(lesAddress);
 
@@ -105,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
                         if (isLecture.isChecked()) lesson.setIsLecture(true);
                         if (isOdd.isChecked()) lesson.setIsOdd(true);
 
+
                         lessonList.add(lesson);
+
 
                         String lesFaculty = lessonFaculty.getText().toString();
                         Faculty faculty = new Faculty();
@@ -118,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         group.setGroupNumber(Integer.valueOf(groupNumberBE));
                         group.setGroupLesson(lessonList);
 
-                        Backendless.Persistence.save(group);
+                        Backendless.Persistence.save(group);*/
 
 
                     }
@@ -127,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
 
     }
@@ -147,6 +163,33 @@ public class MainActivity extends AppCompatActivity {
         changeLayout = (Button) findViewById(R.id.change);
         isLecture = (Switch) findViewById(R.id.isLecture1);
         isOdd = (Switch) findViewById(R.id.isOdd1);
+
+    }
+
+    private class ListSubjectsTask extends AsyncTask<Object, Object, Integer> {
+        protected Integer doInBackground(Object... num) {
+
+            String whereClause2 = "groupNumber = '"+ Integer.valueOf(numGr) +"'";
+
+            BackendlessDataQuery dataQuery = new BackendlessDataQuery();
+            dataQuery.setWhereClause(whereClause2);
+
+            BackendlessCollection<Group> result2 = Backendless.Persistence.of(Group.class).find(dataQuery);
+            Integer groupNum1 = result2.getData().get(0).getGroupNumber();
+
+            return groupNum1;
+        }
+
+        protected void onProgressUpdate(Object... progress) {
+
+        }
+
+        protected void onPostExecute(Integer result) {
+
+            Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
+
+        }
+
 
     }
 }
