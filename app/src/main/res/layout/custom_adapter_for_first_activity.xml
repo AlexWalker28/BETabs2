@@ -47,8 +47,7 @@
             android:background="#00ffffff"
             android:id="@+id/editButton"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignBottom="@+id/lessonAddress" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_height="wrap_content"
