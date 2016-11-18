@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_height="52dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/lessonNumber"
+            android:layout_toStartOf="@+id/editButton">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lessonName"
+                android:textColor="@color/colorText"
+                android:text="Name"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/lessonNumber"
+                android:layout_toStartOf="@+id/editButton"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lessonName"
+                android:id="@+id/lessonAddress"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/lessonNumber"
+                android:layout_toLeftOf="@+id/editButton"
+                android:text="Address"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            android:background="#00ffffff"
+            android:id="@+id/editButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/lessonAddress" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/lessonNumber"
+            android:text="Number"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="140dp" />
+
+    </RelativeLayout>
 
 </LinearLayout>
