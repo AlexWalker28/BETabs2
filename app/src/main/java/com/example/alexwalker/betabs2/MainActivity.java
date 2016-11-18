@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private String lesDay;
     private String lesOrder;
     private String grYear;
+    private Boolean odd;
+    private Boolean lecture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 lesDay   = weekDay.getText().toString();
                 lesOrder = lessonOrder.getText().toString();
                 grYear   = groupYear.getText().toString();
+                odd = isOdd.isChecked();
+                lecture = isLecture.isChecked();
                 new ListSubjectsTask().execute();
 
 
@@ -177,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
             lesson.setDayOfWeek(Integer.valueOf(lesDay));
             lesson.setOrder(Integer.valueOf(lesOrder));
             lesson.setYear(Integer.valueOf(grYear));
-            //if (isLecture.isChecked()) lesson.setIsLecture(true);
-            //if (isOdd.isChecked()) lesson.setIsOdd(true);
+            if (lecture) lesson.setIsLecture(true);
+            if (odd) lesson.setIsOdd(true);
 
 
             group.getGroupLesson().add(lesson);
