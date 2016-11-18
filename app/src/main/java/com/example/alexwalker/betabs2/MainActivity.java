@@ -18,20 +18,22 @@ import com.backendless.persistence.BackendlessDataQuery;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button changeLayout;
-    Button addLessonButton;
-    Button clearButton;
-    AutoCompleteTextView lessonFaculty;
-    EditText groupYear;
-    EditText groupNumber;
-    AutoCompleteTextView lessonName;
-    EditText lessonNumber;
-    AutoCompleteTextView lessonAddress;
-    AutoCompleteTextView weekDay;
-    EditText lessonOrder;
-    Switch isLecture;
-    Switch isOdd;
-    private String numGr;
+    private Button changeLayout;
+    private Button addLessonButton;
+    private Button clearButton;
+    private AutoCompleteTextView lessonFaculty;
+    private EditText groupYear;
+    private EditText groupNumber;
+    private AutoCompleteTextView lessonName;
+    private EditText lessonNumber;
+    private AutoCompleteTextView lessonAddress;
+    private AutoCompleteTextView weekDay;
+    private EditText lessonOrder;
+    private Switch isLecture;
+    private Switch isOdd;
+    private String numberOfGroup;
+    private String lessonNameString;
+    private String lessonAddressString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +77,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                numGr = groupNumber.getText().toString();
+                numberOfGroup = groupNumber.getText().toString();
+                lessonNameString = lessonName.getText().toString();
+                lessonAddressString = lessonAddress.getText().toString();
                 new ListSubjectsTask().execute();
-
-
-
 
 
                 new Thread(new Runnable() {
@@ -91,15 +92,14 @@ public class MainActivity extends AppCompatActivity {
                         lessonName1.setFullName(lesName);
 
 
-
-
-
-
-
                         String lesNumber = lessonNumber.getText().toString();
                         String lesDay = weekDay.getText().toString();
                         String lesOrder = lessonOrder.getText().toString();
                         String grYear = groupYear.getText().toString();
+
+
+                        Lesson lesson = new Lesson();
+                        lesson.setLessonName(lessonName1);
 
                        /* String lesAddress = lessonAddress.getText().toString();
                         Address lessonAddress = new Address();
@@ -144,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     }
 
 
@@ -166,27 +165,44 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class ListSubjectsTask extends AsyncTask<Object, Object, Integer> {
-        protected Integer doInBackground(Object... num) {
+    private class ListSubjectsTask extends AsyncTask<Object, Object, String[]> {
+        protected String[] doInBackground(Object... num) {
 
-            String whereClause2 = "groupNumber = '"+ Integer.valueOf(numGr) +"'";
+            String whereClauseGroup = "groupNumber = '" + Integer.valueOf(numberOfGroup) + "'";
+            String whereClauseSubject = "fullName = '" + lessonNameString + "'";
+            String whereClauseAddress = "address = '" + lessonAddressString + "'";
 
-            BackendlessDataQuery dataQuery = new BackendlessDataQuery();
-            dataQuery.setWhereClause(whereClause2);
+            BackendlessDataQuery groupQuery = new BackendlessDataQuery();
+            groupQuery.setWhereClause(whereClauseGroup);
 
-            BackendlessCollection<Group> result2 = Backendless.Persistence.of(Group.class).find(dataQuery);
-            Integer groupNum1 = result2.getData().get(0).getGroupNumber();
+            BackendlessDataQuery subjectQuery = new BackendlessDataQuery();
+            subjectQuery.setWhereClause(whereClauseSubject);
 
-            return groupNum1;
+            BackendlessDataQuery addressQuery = new BackendlessDataQuery();
+            subjectQuery.setWhereClause(whereClauseAddress);
+
+            String[] results = new String[3];
+
+            BackendlessCollection<Group> groups = Backendless.Persistence.of(Group.class).find(groupQuery);
+            results[0] = groups.getData().get(0).getGroupNumber().toString();
+
+            BackendlessCollection<Subject> subjects = Backendless.Persistence.of(Subject.class).find(subjectQuery);
+            results[1] = subjects.getData().get(0).getFullName();
+
+            BackendlessCollection<Address> address = Backendless.Persistence.of(Address.class).find(addressQuery);
+            results[2] = address.getData().get(0).getAddress();
+
+            return results;
+
         }
 
         protected void onProgressUpdate(Object... progress) {
 
         }
 
-        protected void onPostExecute(Integer result) {
+        protected void onPostExecute(String[] result) {
 
-            Toast.makeText(getApplicationContext(), result.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), result[0] + " " + result[1] + " " + result[2], Toast.LENGTH_LONG).show();
 
         }
 
