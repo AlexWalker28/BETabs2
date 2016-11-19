@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private String grYear;
     private Boolean odd;
     private Boolean lecture;
+    private String lectureOrNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
         Backendless.initApp(this, "ECD9BE7E-78DD-4F01-FF4E-EE88E8026F00", "9B5BC839-0646-3D7B-FF78-5662E53A0200", appVersion);
 
         initVars();
+        lessonFaculty.setText("Лечебное дело");
+        groupYear.setText("4");
+        groupNumber.setText("27");
+        lessonName.setText("Оперативная хирургия");
+        lessonNumber.setText("1");
+        lessonAddress.setText("НХЦ");
+        weekDay.setText("Понедельник");
+        lessonOrder.setText("1");
+
 
         changeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
                 grYear   = groupYear.getText().toString();
                 odd = isOdd.isChecked();
                 lecture = isLecture.isChecked();
+                if (lecture) {
+                    lectureOrNo = "true";
+                }else {
+                    lectureOrNo = "false";
+                }
                 new ListSubjectsTask().execute();
 
 
@@ -159,10 +174,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class ListSubjectsTask extends AsyncTask<Object, Object, String> {
-        protected String doInBackground(Object... num) {
+    private class ListSubjectsTask extends AsyncTask<Object, Object, Group> {
+        protected Group doInBackground(Object... num) {
 
-            String whereClauseGroup = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" AND year = "+grYear;
+
+
+            String whereClause = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" " +
+                    "AND year = "+grYear+" AND groupLesson.lessonName.fullName = '"+lessonNameString+"' " +
+                    "AND groupLesson.dayOfWeek = "+(Converter.convertDayToInteger(lesDay))+" " +
+                    "AND groupLesson.lessonAddress.address = '"+lessonAddressString+"' " +
+                    "AND groupLesson.isLecture = "+lectureOrNo+" " +
+                    "AND groupLesson.number = "+(Integer.valueOf(lesNumber))+" " +
+                    "AND groupLesson.order = "+(Integer.valueOf(lesOrder))+" ";
+
+            BackendlessDataQuery query = new BackendlessDataQuery();
+            query.setWhereClause(whereClause);
+            BackendlessCollection<Group> result = Backendless.Persistence.of(Group.class).find(query);
+            Group group = result.getData().get(0);
+
+
+
+            return group;
+            /*String whereClauseGroup = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" AND year = "+grYear;
             String whereClauseSubject = "fullName = '" + lessonNameString + "'";
             String whereClauseAddress = "address = '"+lessonAddressString+"'";
 
@@ -198,17 +231,20 @@ public class MainActivity extends AppCompatActivity {
             group.getGroupLesson().add(lesson);
             Backendless.Persistence.save(group);
 
-            String returnString = "Saved successfully";
-            return returnString;
+            String returnString = "Saved successfully";*/
         }
 
         protected void onProgressUpdate(Object... progress) {
 
         }
 
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Group result) {
 
-            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+            if(result != null){
+                Toast.makeText(getApplicationContext(), "This lesson have in schedule", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "This lesson not found in schedule", Toast.LENGTH_LONG).show();
+            }
 
         }
 
