@@ -184,38 +184,43 @@ public class MainActivity extends AppCompatActivity {
             BackendlessCollection<Group> result = Backendless.Persistence.of(Group.class).find(query);
             Group group = result.getData().get(0);
 
-            Lesson less = CheckLesson.check(group, Integer.valueOf(lesNumber), Converter.convertDayToInteger(lesDay),
+            String whereClauseSubject = "fullName = '" + lessonNameString + "'";
+
+            BackendlessDataQuery subjectQuery = new BackendlessDataQuery();
+            subjectQuery.setWhereClause(whereClauseSubject);
+
+            BackendlessCollection<Subject> subjects = Backendless.Persistence.of(Subject.class).find(subjectQuery);
+            Subject subject = subjects.getData().get(0);
+
+            String whereClauseAddress = "address = '"+lessonAddressString+"'";
+
+            BackendlessDataQuery addressQuery = new BackendlessDataQuery();
+            addressQuery.setWhereClause(whereClauseAddress);
+
+            BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
+            Address address = addresses.getData().get(0);
+
+            Lesson checkedLesson = Helper.check(group, Integer.valueOf(lesNumber), Converter.convertDayToInteger(lesDay),
                               Integer.valueOf(lesOrder), odd);
 
-            if (less.equals(null)){
-
-                String whereClauseSubject = "fullName = '" + lessonNameString + "'";
-
-                BackendlessDataQuery subjectQuery = new BackendlessDataQuery();
-                subjectQuery.setWhereClause(whereClauseSubject);
-
-                BackendlessCollection<Subject> subjects = Backendless.Persistence.of(Subject.class).find(subjectQuery);
-                Subject subject = subjects.getData().get(0);
-
-                String whereClauseAddress = "address = '"+lessonAddressString+"'";
-
-                BackendlessDataQuery addressQuery = new BackendlessDataQuery();
-                addressQuery.setWhereClause(whereClauseAddress);
-
-                BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
-                Address address = addresses.getData().get(0);
+            if (checkedLesson == null){
 
                 addLesson(group, subject, address, Integer.valueOf(lesNumber),Converter.convertDayToInteger(lesDay),
                         Integer.valueOf(lesOrder), Integer.valueOf(grYear), lecture, odd);
 
-
-
-            }else {
-
             }
 
+            Lesson lesson = new Lesson();
+            lesson.setLessonName(subject);
+            lesson.setLessonAddress(address);
+            lesson.setNumber(Integer.valueOf(lesNumber));
+            lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
+            lesson.setOrder(Integer.valueOf(lesOrder));
+            lesson.setYear(Integer.valueOf(grYear));
+            lesson.setIsLecture(lecture);
+            lesson.setIsOdd(odd);
 
-
+            Backendless.Persistence.save(group);
 
             return group;
         }
