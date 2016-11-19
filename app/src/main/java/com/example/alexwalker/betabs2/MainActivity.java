@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
             Address address = addresses.getData().get(0);
 
+
             Lesson lesson = new Lesson();
             lesson.setLessonName(subject);
             lesson.setLessonAddress(address);
