@@ -15,10 +15,8 @@ public class Helper {
                lesOrder == less.getOrder() &&
                isOdd == less.getIsOdd()){
                 lesson = less;
-
-
+                break;
             }
-            break;
         }
         return lesson;
 

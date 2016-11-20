@@ -200,25 +200,24 @@ public class MainActivity extends AppCompatActivity {
             BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
             Address address = addresses.getData().get(0);
 
-            Lesson checkedLesson = Helper.check(group, Integer.valueOf(lesNumber), Converter.convertDayToInteger(lesDay),
+            Lesson lesson = Helper.check(group, Integer.valueOf(lesNumber), Converter.convertDayToInteger(lesDay),
                               Integer.valueOf(lesOrder), odd);
 
-            if (checkedLesson == null){
+            if (lesson == null){
 
-                addLesson(group, subject, address, Integer.valueOf(lesNumber),Converter.convertDayToInteger(lesDay),
-                        Integer.valueOf(lesOrder), Integer.valueOf(grYear), lecture, odd);
+                lesson = new Lesson();
+                lesson.setNumber(Integer.valueOf(lesNumber));
+                lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
+                lesson.setOrder(Integer.valueOf(lesOrder));
+                lesson.setIsOdd(odd);
+                group.getGroupLesson().add(lesson);
 
             }
 
-            Lesson lesson = new Lesson();
             lesson.setLessonName(subject);
             lesson.setLessonAddress(address);
-            lesson.setNumber(Integer.valueOf(lesNumber));
-            lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
-            lesson.setOrder(Integer.valueOf(lesOrder));
-            lesson.setYear(Integer.valueOf(grYear));
             lesson.setIsLecture(lecture);
-            lesson.setIsOdd(odd);
+
 
             Backendless.Persistence.save(group);
 
