@@ -141,7 +141,7 @@ public class Main2Activity extends AppCompatActivity {
                                 for (int i = 1; i < count; i++) {
                                     mAdapter.addItem(lessons.get(i).getLessonName().getFullName());
                                     if (i % 4 == 0) {
-                                        mAdapter.addSectionHeaderItem(Converter.convertDay(lessons.get(i).getDayOfWeek()));
+                                        mAdapter.addSectionHeaderItem(Helper.convertDay(lessons.get(i).getDayOfWeek()));
                                     }
                                 }
                                 listView.setAdapter(mAdapter);
