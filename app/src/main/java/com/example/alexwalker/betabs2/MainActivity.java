@@ -5,10 +5,12 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -38,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private String lesDay;
     private String lesOrder;
     private String lesFaculty;
-    private String grYear;
     private Boolean odd;
     private Boolean lecture;
+    private Spinner yearSpinner;
+    private String yearText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        final ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(this, R.array.YearSpinner, R.layout.support_simple_spinner_dropdown_item);
+        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<CharSequence> facultyAdapter = ArrayAdapter.createFromResource(this, R.array.Faculty, R.layout.support_simple_spinner_dropdown_item);
         facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<CharSequence> nameAdapter = ArrayAdapter.createFromResource(this, R.array.Subjects, R.layout.support_simple_spinner_dropdown_item);
@@ -78,6 +82,40 @@ public class MainActivity extends AppCompatActivity {
         lessonAddress.setThreshold(1);
         weekDay.setAdapter(dayAdapter);
         weekDay.setThreshold(1);
+        yearSpinner.setAdapter(yearAdapter);
+        yearAdapter.notifyDataSetChanged();
+
+
+        yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        yearText = "1";
+                        break;
+                    case 1:
+                        yearText = "2";
+                        break;
+                    case 2:
+                        yearText = "3";
+                        break;
+                    case 3:
+                        yearText = "4";
+                        break;
+                    case 4:
+                        yearText = "5";
+                        break;
+                    case 5:
+                        yearText = "6";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //yearText = "1";
+            }
+        });
 
 
         addLessonButton.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                 lesNumber = lessonNumber.getText().toString();
                 lesDay   = weekDay.getText().toString();
                 lesOrder = lessonOrder.getText().toString();
-                grYear   = groupYear.getText().toString();
                 odd = isOdd.isChecked();
                 lecture = isLecture.isChecked();
                 new ListSubjectsTask().execute();
@@ -144,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
     private void initVars() {
 
         lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
-        groupYear = (EditText) findViewById(R.id.lessonCourse1);
         groupNumber = (EditText) findViewById(R.id.lessonGroup1);
+        yearSpinner = (Spinner) findViewById(R.id.year2);
         lessonName = (AutoCompleteTextView) findViewById(R.id.lessonName1);
         lessonNumber = (EditText) findViewById(R.id.lessonNumber1);
         lessonAddress = (AutoCompleteTextView) findViewById(R.id.lessonAddress1);
@@ -162,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
     private class ListSubjectsTask extends AsyncTask<Object, Object, String> {
         protected String doInBackground(Object... num) {
 
-            String whereClauseGroup = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" AND year = "+grYear;
+            String whereClauseGroup = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" AND year = "+yearText;
             String whereClauseSubject = "fullName = '" + lessonNameString + "'";
             String whereClauseAddress = "address = '"+lessonAddressString+"'";
 
@@ -190,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
             lesson.setNumber(Integer.valueOf(lesNumber));
             lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
             lesson.setOrder(Integer.valueOf(lesOrder));
-            lesson.setYear(Integer.valueOf(grYear));
+            lesson.setYear(Integer.valueOf(yearText));
             if (lecture) lesson.setIsLecture(true);
             if (odd) lesson.setIsOdd(true);
 

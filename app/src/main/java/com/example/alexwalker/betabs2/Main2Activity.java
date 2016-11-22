@@ -52,9 +52,11 @@ public class Main2Activity extends AppCompatActivity {
         facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         facultySpinner.setAdapter(facultyAdapter);
-        yearSpinner.setAdapter(yearAdapter);
         facultyAdapter.notifyDataSetChanged();
+        yearSpinner.setAdapter(yearAdapter);
         yearAdapter.notifyDataSetChanged();
+
+
 
         facultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
