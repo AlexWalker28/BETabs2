@@ -141,32 +141,6 @@ public class MainActivity extends AppCompatActivity {
                         Subject lessonName1 = new Subject();
                         // TODO query to get subject, query to get group
                         lessonName1.setFullName(lesName);
-/*                        Lesson lesson = new Lesson();
-                        lesson.setLessonName(lessonName1);
-
-                        lesson.setOrder(Integer.valueOf(lesOrder));
-                        lesson.setYear(Integer.valueOf(grYear));
-                        if (isLecture.isChecked()) lesson.setIsLecture(true);
-                        if (isOdd.isChecked()) lesson.setIsOdd(true);
-
-
-                        lessonList.add(lesson);
-
-
-                        String lesFaculty = lessonFaculty.getText().toString();
-                        Faculty faculty = new Faculty();
-                        faculty.setFaculty(lesFaculty);
-
-
-                        String groupNumberBE = groupNumber.getText().toString();
-                        Group group = new Group();
-                        group.setGroupFaculty(faculty);
-                        group.setGroupNumber(Integer.valueOf(groupNumberBE));
-                        group.setGroupLesson(lessonList);
-
-                        Backendless.Persistence.save(group);*/
-
-
                     }
                 }).start();
 
@@ -196,60 +170,70 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class ListSubjectsTask extends AsyncTask<Object, Object, String> {
-        protected String doInBackground(Object... num) {
+    private class ListSubjectsTask extends AsyncTask<Object, Object, Group> {
+        protected Group doInBackground(Object... num) {
 
-            String whereClauseGroup = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" AND year = "+yearText;
+            String whereClause = "groupFaculty.faculty = '" + lesFaculty + "' AND groupNumber = " + numberOfGroup + " " +
+                    "AND year = " + yearText;
+
+            BackendlessDataQuery query = new BackendlessDataQuery();
+            query.setWhereClause(whereClause);
+            BackendlessCollection<Group> result = Backendless.Persistence.of(Group.class).find(query);
+            Group group = result.getData().get(0);
+
             String whereClauseSubject = "fullName = '" + lessonNameString + "'";
-            String whereClauseAddress = "address = '"+lessonAddressString+"'";
-
-            BackendlessDataQuery groupQuery = new BackendlessDataQuery();
-            groupQuery.setWhereClause(whereClauseGroup);
 
             BackendlessDataQuery subjectQuery = new BackendlessDataQuery();
             subjectQuery.setWhereClause(whereClauseSubject);
 
-            BackendlessDataQuery addressQuery = new BackendlessDataQuery();
-            addressQuery.setWhereClause(whereClauseAddress);
-
-            BackendlessCollection<Group> groups = Backendless.Persistence.of(Group.class).find(groupQuery);
-            Group group = groups.getData().get(0);
-
             BackendlessCollection<Subject> subjects = Backendless.Persistence.of(Subject.class).find(subjectQuery);
             Subject subject = subjects.getData().get(0);
+
+            String whereClauseAddress = "address = '" + lessonAddressString + "'";
+
+            BackendlessDataQuery addressQuery = new BackendlessDataQuery();
+            addressQuery.setWhereClause(whereClauseAddress);
 
             BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
             Address address = addresses.getData().get(0);
 
-            Lesson lesson = new Lesson();
+            Lesson lesson = Helper.check(group, Integer.valueOf(lesNumber), Converter.convertDayToInteger(lesDay),
+                    Integer.valueOf(lesOrder), odd);
+
+            if (lesson == null) {
+
+                lesson = new Lesson();
+                lesson.setNumber(Integer.valueOf(lesNumber));
+                lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
+                lesson.setOrder(Integer.valueOf(lesOrder));
+                lesson.setIsOdd(odd);
+                group.getGroupLesson().add(lesson);
+
+            }
+
             lesson.setLessonName(subject);
             lesson.setLessonAddress(address);
-            lesson.setNumber(Integer.valueOf(lesNumber));
-            lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
-            lesson.setOrder(Integer.valueOf(lesOrder));
-            lesson.setYear(Integer.valueOf(yearText));
-            if (lecture) lesson.setIsLecture(true);
-            if (odd) lesson.setIsOdd(true);
+            lesson.setIsLecture(lecture);
 
 
-            group.getGroupLesson().add(lesson);
             Backendless.Persistence.save(group);
 
-            String returnString = "Saved successfully";
-            return returnString;
+            return group;
         }
+    }
 
         protected void onProgressUpdate(Object... progress) {
 
         }
 
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Group result) {
 
-            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+            if(result != null){
+                Toast.makeText(getApplicationContext(), "This lesson have in schedule", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "This lesson not found in schedule", Toast.LENGTH_LONG).show();
+            }
 
         }
-
-
-    }
 
 }
