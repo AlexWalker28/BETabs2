@@ -1,9 +1,5 @@
 package com.example.alexwalker.betabs2;
 
-/**
- * Created by ThirtySeven on 18.11.2016.
- */
-
 public class Helper {
 
     public static Lesson check(Group group, int lesNum, int lesWeekDay, int lesOrder, boolean isOdd){
