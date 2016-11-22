@@ -4,17 +4,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-/**
- * Created by AlexWalker on 22.11.2016.
- */
 
 public class ListItem implements Item {
-    private final String str1;
-    private final String str2;
+    private final String name;
+    private final String address;
+    private final String number;
 
-    public ListItem(String text1, String text2) {
-        this.str1 = text1;
-        this.str2 = text2;
+    public ListItem(String name, String address, String number) {
+        this.name = name;
+        this.address = address;
+        this.number = number;
     }
 
     @Override
@@ -26,15 +25,17 @@ public class ListItem implements Item {
         View view;
         if (convertView == null) {
             view = (View) inflater.inflate(R.layout.custom_adapter, null);
-            // Do some initialization
+
         } else {
             view = convertView;
         }
 
-        TextView text1 = (TextView) view.findViewById(R.id.lessonName);
-        TextView text2 = (TextView) view.findViewById(R.id.lessonAddress);
-        text1.setText(str1);
-        text2.setText(str2);
+        TextView lessonName = (TextView) view.findViewById(R.id.lessonName);
+        TextView lessonAddress = (TextView) view.findViewById(R.id.lessonAddress);
+        TextView lessonNumber = (TextView)view.findViewById(R.id.lessonNumber);
+        lessonName.setText(name);
+        lessonAddress.setText(address);
+        lessonNumber.setText(number);
 
         return view;
     }

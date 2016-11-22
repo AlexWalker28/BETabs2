@@ -4,12 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-/**
- * Created by AlexWalker on 22.11.2016.
- */
-
 public class Header implements Item {
-    private final String         name;
+    private final String name;
 
     public Header(String name) {
         this.name = name;
@@ -25,7 +21,7 @@ public class Header implements Item {
         View view;
         if (convertView == null) {
             view = (View) inflater.inflate(R.layout.custom_adapter_header, null);
-            // Do some initialization
+
         } else {
             view = convertView;
         }

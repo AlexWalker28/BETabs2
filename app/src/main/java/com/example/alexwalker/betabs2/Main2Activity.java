@@ -58,7 +58,6 @@ public class Main2Activity extends AppCompatActivity {
         yearAdapter.notifyDataSetChanged();
 
 
-
         facultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -149,23 +148,23 @@ public class Main2Activity extends AppCompatActivity {
                                 }
                                 listView.setAdapter(mAdapter);*/
 
+
                                 List<Item> items = new ArrayList<Item>();
-                                items.add(new Header("Header 1"));
-                                items.add(new ListItem("Text 1", "Rabble rabble"));
-                                items.add(new ListItem("Text 2", "Rabble rabble"));
-                                items.add(new ListItem("Text 3", "Rabble rabble"));
-                                items.add(new ListItem("Text 4", "Rabble rabble"));
-                                items.add(new Header("Header 2"));
-                                items.add(new ListItem("Text 5", "Rabble rabble"));
-                                items.add(new ListItem("Text 6", "Rabble rabble"));
-                                items.add(new ListItem("Text 7", "Rabble rabble"));
-                                items.add(new ListItem("Text 8", "Rabble rabble"));
+                                int count = lessons.size();
+                                items.add(new Header(Helper.convertDay(lessons.get(0).getDayOfWeek())));
+                                for (int i = 1; i < count; i++) {
+                                    String lessonName = lessons.get(i).getLessonName().getFullName();
+                                    String lessonAddress = lessons.get(i).getLessonAddress().getAddress();
+                                    String lessonNumber = Helper.convertLessonNumber(lessons.get(i).getNumber().toString());
+
+                                    items.add(new ListItem(lessonName, lessonAddress, lessonNumber));
+                                    if (i % 4 == 0) {
+                                        items.add(new Header(Helper.convertDay(lessons.get(i).getDayOfWeek())));
+                                    }
+                                }
 
                                 LessonsListAdapter adapter = new LessonsListAdapter(Main2Activity.this, items);
                                 listView.setAdapter(adapter);
-
-
-
 
 
                             }
