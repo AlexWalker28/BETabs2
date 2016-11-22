@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lessonNumber2"
+                android:layout_weight="1"
+                android:hint="@string/lessonNumber" />
+
+            <AutoCompleteTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:hint="@string/lessonOrder"
+                android:layout_weight="1"
+                android:id="@+id/lessonOrder2" />
+
+            <Switch
+                android:text="Нечетная"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/isOdd2"
+                android:layout_weight="1" />
+
+            <Switch
+                android:text="@string/switch_lecture"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/isLecture2"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lessonName2"
+                android:layout_weight="1"
+                android:hint="@string/lessonName" />
+
+            <AutoCompleteTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/LessonAddress2"
+                android:layout_weight="1"
+                android:hint="@string/lessonAddress" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/plus_dr"
+                android:id="@+id/addButton2"
+                android:background="#00ffffff" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
