@@ -99,52 +99,14 @@ public class MainActivity extends AppCompatActivity {
                 lessonAddressString = lessonAddress.getText().toString();
                 lesFaculty = lessonFaculty.getText().toString();
                 lesNumber = lessonNumber.getText().toString();
-                lesDay   = weekDay.getText().toString();
+                lesDay = weekDay.getText().toString();
                 lesOrder = lessonOrder.getText().toString();
-                grYear   = groupYear.getText().toString();
+                grYear = groupYear.getText().toString();
                 odd = isOdd.isChecked();
                 lecture = isLecture.isChecked();
 
 
                 new ListSubjectsTask().execute();
-
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String lesName = lessonName.getText().toString();
-                        Subject lessonName1 = new Subject();
-                        // TODO query to get subject, query to get group
-                        lessonName1.setFullName(lesName);
-/*                        Lesson lesson = new Lesson();
-                        lesson.setLessonName(lessonName1);
-
-                        lesson.setOrder(Integer.valueOf(lesOrder));
-                        lesson.setYear(Integer.valueOf(grYear));
-                        if (isLecture.isChecked()) lesson.setIsLecture(true);
-                        if (isOdd.isChecked()) lesson.setIsOdd(true);
-
-
-                        lessonList.add(lesson);
-
-
-                        String lesFaculty = lessonFaculty.getText().toString();
-                        Faculty faculty = new Faculty();
-                        faculty.setFaculty(lesFaculty);
-
-
-                        String groupNumberBE = groupNumber.getText().toString();
-                        Group group = new Group();
-                        group.setGroupFaculty(faculty);
-                        group.setGroupNumber(Integer.valueOf(groupNumberBE));
-                        group.setGroupLesson(lessonList);
-
-                        Backendless.Persistence.save(group);*/
-
-
-                    }
-                }).start();
-
 
             }
         });
@@ -175,9 +137,8 @@ public class MainActivity extends AppCompatActivity {
         protected Group doInBackground(Object... num) {
 
 
-
-            String whereClause = "groupFaculty.faculty = '"+lesFaculty+"' AND groupNumber = "+numberOfGroup+" " +
-                    "AND year = "+grYear;
+            String whereClause = "groupFaculty.faculty = '" + lesFaculty + "' AND groupNumber = " + numberOfGroup + " " +
+                    "AND year = " + grYear;
 
             BackendlessDataQuery query = new BackendlessDataQuery();
             query.setWhereClause(whereClause);
@@ -192,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             BackendlessCollection<Subject> subjects = Backendless.Persistence.of(Subject.class).find(subjectQuery);
             Subject subject = subjects.getData().get(0);
 
-            String whereClauseAddress = "address = '"+lessonAddressString+"'";
+            String whereClauseAddress = "address = '" + lessonAddressString + "'";
 
             BackendlessDataQuery addressQuery = new BackendlessDataQuery();
             addressQuery.setWhereClause(whereClauseAddress);
@@ -201,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
             Address address = addresses.getData().get(0);
 
             Lesson lesson = Helper.check(group, Integer.valueOf(lesNumber), Helper.convertDayToInteger(lesDay),
-                              Integer.valueOf(lesOrder), odd);
+                    Integer.valueOf(lesOrder), odd);
 
-            if (lesson == null){
+            if (lesson == null) {
 
                 lesson = new Lesson();
                 lesson.setNumber(Integer.valueOf(lesNumber));
@@ -230,34 +191,14 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(Group result) {
 
-            if(result != null){
+            if (result != null) {
                 Toast.makeText(getApplicationContext(), "This lesson have in schedule", Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 Toast.makeText(getApplicationContext(), "This lesson not found in schedule", Toast.LENGTH_LONG).show();
             }
 
         }
 
-
-    }
-
-    private void addLesson (Group group, Subject subject, Address address,
-                            int lesNumber, int lesDay, int lesOrder,
-                            int groupYear, boolean isLecture, boolean isOdd){
-
-
-        Lesson lesson = new Lesson();
-        lesson.setLessonName(subject);
-        lesson.setLessonAddress(address);
-        lesson.setNumber(lesNumber);
-        lesson.setDayOfWeek(lesDay);
-        lesson.setOrder(lesOrder);
-        lesson.setYear(groupYear);
-        lesson.setIsLecture(isLecture);
-        lesson.setIsOdd(isOdd);
-
-        group.getGroupLesson().add(lesson);
-        Backendless.Persistence.save(group);
 
     }
 
