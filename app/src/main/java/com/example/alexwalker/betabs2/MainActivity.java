@@ -23,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private Button changeLayout;
     private Button addLessonButton;
     private Button clearButton;
-    private AutoCompleteTextView lessonFaculty;
-    private EditText groupYear;
     private EditText groupNumber;
     private AutoCompleteTextView lessonName;
     private EditText lessonNumber;
@@ -44,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     private Boolean lecture;
     private Spinner yearSpinner;
     private String yearText;
+    private String facultyText;
+    private Spinner facultySpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +65,15 @@ public class MainActivity extends AppCompatActivity {
 
         final ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(this, R.array.YearSpinner, R.layout.support_simple_spinner_dropdown_item);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        final ArrayAdapter<CharSequence> facultyAdapter = ArrayAdapter.createFromResource(this, R.array.Faculty, R.layout.support_simple_spinner_dropdown_item);
-        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<CharSequence> nameAdapter = ArrayAdapter.createFromResource(this, R.array.Subjects, R.layout.support_simple_spinner_dropdown_item);
-        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<CharSequence> addressAdapter = ArrayAdapter.createFromResource(this, R.array.Addresses, R.layout.support_simple_spinner_dropdown_item);
-        facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        addressAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final ArrayAdapter<CharSequence> dayAdapter = ArrayAdapter.createFromResource(this, R.array.Week, R.layout.support_simple_spinner_dropdown_item);
+        dayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        final ArrayAdapter<CharSequence> facultyAdapter = ArrayAdapter.createFromResource(this, R.array.Faculty, android.R.layout.simple_spinner_item);
         facultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-
-        lessonFaculty.setAdapter(facultyAdapter);
-        lessonFaculty.setThreshold(1);
         lessonName.setAdapter(nameAdapter);
         lessonName.setThreshold(1);
         lessonAddress.setAdapter(addressAdapter);
@@ -84,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         weekDay.setThreshold(1);
         yearSpinner.setAdapter(yearAdapter);
         yearAdapter.notifyDataSetChanged();
+        facultySpinner.setAdapter(facultyAdapter);
+        facultyAdapter.notifyDataSetChanged();
 
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -116,6 +116,33 @@ public class MainActivity extends AppCompatActivity {
                 //yearText = "1";
             }
         });
+        facultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        facultyText = "Лечебное дело";
+                        break;
+                    case 1:
+                        facultyText = "Педиатрия";
+                        break;
+                    case 2:
+                        facultyText = "Фармация";
+                        break;
+                    case 3:
+                        facultyText = "Стоматология";
+                        break;
+                    case 4:
+                        facultyText = "МПД";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+//                        facultyText = "Лечебное дело";
+            }
+        });
 
 
         addLessonButton.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
                 numberOfGroup = groupNumber.getText().toString();
                 lessonNameString = lessonName.getText().toString();
                 lessonAddressString = lessonAddress.getText().toString();
-                lesFaculty = lessonFaculty.getText().toString();
                 lesNumber = lessonNumber.getText().toString();
                 lesDay   = weekDay.getText().toString();
                 lesOrder = lessonOrder.getText().toString();
@@ -154,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initVars() {
 
-        lessonFaculty = (AutoCompleteTextView) findViewById(R.id.lessonFaculty1);
+        facultySpinner = (Spinner) findViewById(R.id.facult2);
         groupNumber = (EditText) findViewById(R.id.lessonGroup1);
         yearSpinner = (Spinner) findViewById(R.id.year2);
         lessonName = (AutoCompleteTextView) findViewById(R.id.lessonName1);
@@ -173,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
     private class ListSubjectsTask extends AsyncTask<Object, Object, Group> {
         protected Group doInBackground(Object... num) {
 
-            String whereClause = "groupFaculty.faculty = '" + lesFaculty + "' AND groupNumber = " + numberOfGroup + " " +
+            String whereClause = "groupFaculty.faculty = '" + facultyText + "' AND groupNumber = " + numberOfGroup + " " +
                     "AND year = " + yearText;
 
             BackendlessDataQuery query = new BackendlessDataQuery();
