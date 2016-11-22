@@ -159,18 +159,6 @@ public class MainActivity extends AppCompatActivity {
                 lecture = isLecture.isChecked();
                 new ListSubjectsTask().execute();
 
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String lesName = lessonName.getText().toString();
-                        Subject lessonName1 = new Subject();
-                        // TODO query to get subject, query to get group
-                        lessonName1.setFullName(lesName);
-                    }
-                }).start();
-
-
             }
         });
 
