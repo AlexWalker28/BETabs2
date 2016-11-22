@@ -223,14 +223,14 @@ public class MainActivity extends AppCompatActivity {
             BackendlessCollection<Address> addresses = Backendless.Persistence.of(Address.class).find(addressQuery);
             Address address = addresses.getData().get(0);
 
-            Lesson lesson = Helper.check(group, Integer.valueOf(lesNumber), Converter.convertDayToInteger(lesDay),
-                    Integer.valueOf(lesOrder), odd);
+            Lesson lesson = Helper.check(group, Integer.valueOf(lesNumber), Helper.convertDayToInteger(lesDay),
+                              Integer.valueOf(lesOrder), odd);
 
             if (lesson == null) {
 
                 lesson = new Lesson();
                 lesson.setNumber(Integer.valueOf(lesNumber));
-                lesson.setDayOfWeek(Converter.convertDayToInteger(lesDay));
+                lesson.setDayOfWeek(Helper.convertDayToInteger(lesDay));
                 lesson.setOrder(Integer.valueOf(lesOrder));
                 lesson.setIsOdd(odd);
                 group.getGroupLesson().add(lesson);
