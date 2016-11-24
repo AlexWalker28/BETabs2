@@ -2,6 +2,7 @@ package com.example.alexwalker.betabs2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,11 @@ public class Main2Activity extends AppCompatActivity {
     ImageButton button2;
     String facultyText;
     String yearText;
+    String lessonName;
+    String lessonAddress;
+    String lessonNumber;
+    String weekDay;
+
 
 
     @Override
@@ -151,16 +157,22 @@ public class Main2Activity extends AppCompatActivity {
 
                                 List<Item> items = new ArrayList<Item>();
                                 int count = lessons.size();
-                                items.add(new Header(Helper.convertDay(lessons.get(0).getDayOfWeek())));
                                 for (int i = 1; i < count; i++) {
-                                    String lessonName = lessons.get(i).getLessonName().getFullName();
-                                    String lessonAddress = lessons.get(i).getLessonAddress().getAddress();
-                                    String lessonNumber = Helper.convertLessonNumber(lessons.get(i).getNumber().toString());
+                                    if (weekDay != Helper.convertDay(lessons.get(i).getDayOfWeek())) {
+                                        weekDay = Helper.convertDay(lessons.get(i).getDayOfWeek());
+                                        items.add(new Header(weekDay));
 
-                                    items.add(new ListItem(lessonName, lessonAddress, lessonNumber));
-                                    if (i % 4 == 0) {
-                                        items.add(new Header(Helper.convertDay(lessons.get(i).getDayOfWeek())));
+
                                     }
+                                    lessonName = lessons.get(i).getLessonName().getFullName();
+                                    lessonAddress = lessons.get(i).getLessonAddress().getAddress();
+                                    lessonNumber = Helper.convertLessonNumber(lessons.get(i).getNumber().toString());
+                                    weekDay = Helper.convertDay(lessons.get(i).getDayOfWeek());
+                                    items.add(new ListItem(lessonName, lessonAddress,lessonNumber));
+
+
+
+
                                 }
 
                                 LessonsListAdapter adapter = new LessonsListAdapter(Main2Activity.this, items);
