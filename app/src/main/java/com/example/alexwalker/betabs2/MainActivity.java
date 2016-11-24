@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 lessonNameString = lessonName.getText().toString();
                 lessonAddressString = lessonAddress.getText().toString();
                 lesNumber = lessonNumber.getText().toString();
-                lesDay   = weekDay.getText().toString();
+                lesDay = weekDay.getText().toString();
                 lesOrder = lessonOrder.getText().toString();
                 odd = isOdd.isChecked();
                 lecture = isLecture.isChecked();
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
             Address address = addresses.getData().get(0);
 
             Lesson lesson = Helper.check(group, Integer.valueOf(lesNumber), Helper.convertDayToInteger(lesDay),
-                              Integer.valueOf(lesOrder), odd);
+                    Integer.valueOf(lesOrder), odd);
 
             if (lesson == null) {
 
@@ -236,18 +236,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-        protected void onProgressUpdate(Object... progress) {
+    protected void onProgressUpdate(Object... progress) {
 
-        }
+    }
 
-        protected void onPostExecute(Group result) {
+    protected void onPostExecute(Group result) {
 
-            if(result != null){
-                Toast.makeText(getApplicationContext(), "This lesson have in schedule", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(getApplicationContext(), "This lesson not found in schedule", Toast.LENGTH_LONG).show();
-            }
 
-        }
+        Toast.makeText(getApplicationContext(), "This lesson was add in schedule", Toast.LENGTH_LONG).show();
+
+
+
+    }
 
 }
