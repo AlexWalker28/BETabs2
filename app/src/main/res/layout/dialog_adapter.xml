@@ -47,6 +47,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:id="@+id/linearLayout"
             android:layout_height="wrap_content">
 
             <AutoCompleteTextView
@@ -63,14 +64,11 @@
                 android:layout_weight="1"
                 android:hint="@string/lessonAddress" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/plus_dr"
-                android:id="@+id/addButton2"
-                android:background="#00ffffff" />
+
 
         </LinearLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>
