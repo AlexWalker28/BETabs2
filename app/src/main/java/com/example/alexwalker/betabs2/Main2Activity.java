@@ -35,6 +35,7 @@ public class Main2Activity extends AppCompatActivity {
     String lessonAddress;
     String lessonNumber;
     String weekDay;
+    String week;
 
 
 
@@ -167,12 +168,10 @@ public class Main2Activity extends AppCompatActivity {
                                     lessonName = lessons.get(i).getLessonName().getFullName();
                                     lessonAddress = lessons.get(i).getLessonAddress().getAddress();
                                     lessonNumber = Helper.convertLessonNumber(lessons.get(i).getNumber().toString());
-                                    weekDay = Helper.convertDay(lessons.get(i).getDayOfWeek());
-                                    items.add(new ListItem(lessonName, lessonAddress,lessonNumber));
-
-
-
-
+                                    week = Helper.convertDay(lessons.get(i).getDayOfWeek());
+                                    if (Helper.convertDayToInteger(weekDay) == Helper.convertDayToInteger(week)){
+                                        items.add(new ListItem(lessonName, lessonAddress,lessonNumber));
+                                    }
                                 }
 
                                 LessonsListAdapter adapter = new LessonsListAdapter(Main2Activity.this, items);
